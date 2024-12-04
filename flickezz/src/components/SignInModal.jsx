@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import * as bootstrap from "bootstrap";
+import * as bootstrap from "bootstrap";
 import { useAuthContext } from "../context/AuthContext";
 
 const SignInModal = () => {

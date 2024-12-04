@@ -7,10 +7,28 @@ const scrap = async () => {
     const url = `https://yts.mx/api/v2/list_movies.json?&sort_by=rating&order_by=desc`;
     const { data } = await axios.get(url);
 
-    // const maxPages = Math.ceil(data.data.movie_count / data.data.limit);
-    const maxPages = 10;
+    const maxPages = Math.ceil(data.data.movie_count / data.data.limit);
+    // const maxPages = 10;
 
-    console.log(`${maxPages} pages available`);
+    const availableMovieCount = await Movie.count();
+
+    const scrappedPagesCount = Math.floor(
+      availableMovieCount / data.data.limit
+    );
+
+    console.log(`All movie count`, data.data.movie_count);
+
+    console.log(`available pages`, maxPages);
+
+    console.log("available movie count", availableMovieCount);
+
+    console.log("scrapped pages count", scrappedPagesCount);
+
+    console.log("scrapped pages");
+
+    const startPage = scrappedPagesCount - 1;
+
+    console.log("Starting from page", startPage);
 
     const fetchMovies = async (page) => {
       const url = `https://yts.mx/api/v2/list_movies.json?&sort_by=rating&order_by=desc&page=${page}`;
@@ -18,12 +36,27 @@ const scrap = async () => {
       return data.data.movies;
     };
 
-    for (let i = 0; i < maxPages; i++) {
+    for (let i = startPage; i < maxPages; i++) {
       let page = i + 1;
+      console.log("Fetching page", page);
+
       const fetchedMovies = await fetchMovies(page);
 
       for (let j = 0; j < fetchedMovies.length; j++) {
         const m = fetchedMovies[j];
+
+        const exitMovie = await Movie.findOne({
+          where: {
+            scrapId: m.id,
+          },
+        });
+
+        if (exitMovie) {
+          console.log(
+            `${exitMovie.id}. ${m.title} - Is allready exits. skipping...`
+          );
+          continue;
+        }
 
         const newMovie = await Movie.create({
           scrapId: m.id,
@@ -61,7 +94,7 @@ const scrap = async () => {
           });
         }
 
-        console.log(`${j}. ${m.title} - Success`);
+        console.log(`${newMovie.id}. ${m.title} - Success`);
       }
     }
 

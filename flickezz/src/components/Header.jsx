@@ -41,6 +41,7 @@ const Header = () => {
           position: isSticky ? "sticky" : "fixed",
           top: 0,
           zIndex: 999,
+          transition: "all 0.2s ease-in-out",
         }}
       >
         <div className="container-fluid gap-3 gap-md-0">
@@ -126,7 +127,8 @@ const Header = () => {
               <li className="nav-item">
                 <Link
                   className={`nav-link ${
-                    location.pathname === "/privacy-policies" && "nav-link-active"
+                    location.pathname === "/privacy-policies" &&
+                    "nav-link-active"
                   }`}
                   to={"/privacy-policies"}
                 >
