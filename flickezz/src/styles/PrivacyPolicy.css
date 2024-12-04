@@ -1,0 +1,49 @@
+.privacy-policy {
+    padding: 50px 15px;
+  }
+  
+  .privacy-policy-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .privacy-policy-intro {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgb(209, 205, 205);
+  }
+  
+  .privacy-policy-subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: white;
+  }
+  
+  .privacy-policy-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgb(209, 205, 205);
+  }
+  
+  .privacy-policy-list {
+    padding-left: 20px;
+    color: rgb(209, 205, 205);
+  }
+  
+  .privacy-policy-list li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .highlight {
+    color: #e74c3c;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .highlight:hover {
+    text-decoration: underline;
+  }
+  

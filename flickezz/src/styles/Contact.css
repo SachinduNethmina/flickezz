@@ -1,0 +1,29 @@
+.contact-benefits {
+  list-style-type: none;
+  padding-left: 20px;
+  color: rgb(209, 205, 205);
+}
+
+.contact-benefits li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.social-media-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.social-media-links li {
+  margin-bottom: 10px;
+}
+
+.social-media-links a {
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.social-media-links a:hover {
+  text-decoration: underline;
+}

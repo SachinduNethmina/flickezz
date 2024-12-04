@@ -1,0 +1,445 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
+* {
+  font-family: "Open Sans", serif;
+  font-size: 13px;
+}
+
+.logo-header {
+  width: 150px;
+}
+
+.logo-header-sm {
+  width: 110px;
+}
+
+.bg-1 {
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-2 {
+  width: 100%;
+  height: 50vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.navbar .nav-link {
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+.navbar .nav-link:hover {
+  color: rgb(228, 225, 225) !important;
+  font-weight: 500 !important;
+}
+
+.navbar .nav-link-active {
+  color: #d22b2b !important;
+  font-weight: 700 !important;
+}
+
+.btn {
+  border-radius: 50px !important;
+  font-weight: 500 !important;
+  min-height: 45px;
+  min-width: 85px;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  border: 2px solid white !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.bg-1-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.sticky {
+  transition: all 0.4s ease-in-out;
+}
+
+.title-1 {
+  color: white;
+  font-weight: 800;
+  font-size: 35px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.bg-1-container-1 {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.title-2 {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+.themed-input-1 {
+  border-radius: 50px !important;
+  font-size: 14px !important;
+  height: 50px;
+  font-weight: 500 !important;
+  min-width: unset;
+}
+
+.themed-input-2 {
+  border-radius: 50px !important;
+  font-size: 14px !important;
+  height: 43px;
+  font-weight: 500 !important;
+  min-width: unset;
+}
+
+.btn-themed {
+  background-color: #d22b2b !important;
+  color: white !important;
+  font-size: 14px !important;
+  min-width: 90px;
+}
+
+.btn-themed-1 {
+  background-color: #d22b2b !important;
+  color: white !important;
+  font-size: 14px !important;
+  min-width: 90px;
+}
+
+.h-45 {
+  height: 45px;
+}
+
+.bg-theme {
+  background-color: #d22b2b !important;
+}
+
+.sticky-search-container {
+  top: 52px;
+  position: sticky;
+}
+
+.sticky-search-container-1 {
+  border-radius: 50px;
+}
+
+.title-3 {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+}
+
+.card-img-box {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.card-img-box-2 {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 14px;
+}
+
+.card-body-2 {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex; /* Ensure child alignment works */
+  justify-content: flex-end; /* Align content at the bottom */
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.card-body-2:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.bg-dark-light {
+  background-color: rgb(44, 43, 43) !important;
+}
+
+.title-4 {
+  color: white;
+}
+
+.title-5 {
+  color: white;
+  font-size: 12px;
+}
+
+.card-footer-box {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.card-footer-box small {
+  color: rgb(168, 166, 166);
+}
+
+.mySwiper .swiper-pagination-bullet {
+  background-color: white; /* Change the default dot color to white */
+  opacity: 0.6; /* Adjust transparency for inactive dots */
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: #d22b2b; /* Active dot color */
+  opacity: 1; /* Make the active dot fully opaque */
+}
+
+/*  */
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(0, 0, 0, 0.6); /* Transparent black */
+  color: white; /* White arrow color */
+  border-radius: 20%; /* Make buttons rounded */
+  width: 45px !important; /* Adjust size as needed */
+  height: 55px !important; /* Adjust size as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px !important;
+  margin-top: -50px !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  content: ""; /* Clear Swiper's default icon */
+}
+
+.swiper-button-next::after {
+  content: ">"; /* Replace with your desired icon */
+  font-family: Arial, sans-serif; /* Ensure proper font is used */
+  font-size: 17px !important; /* Adjust icon size */
+  color: white !important;
+}
+
+.swiper-button-prev::after {
+  content: "<"; /* Replace with your desired icon */
+  font-family: Arial, sans-serif;
+  font-size: 17px !important; /* Adjust icon size */
+  color: white !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly darker on hover */
+}
+
+/*  */
+
+.movie-card-container {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.movie-card-box {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+.footer p {
+  color: rgb(179, 174, 174);
+  font-size: 13px;
+}
+
+.footer h5 {
+  color: white;
+  font-weight: bold;
+}
+
+.footer a {
+  color: rgb(179, 174, 174);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.copyright {
+  color: rgb(179, 174, 174);
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.movie-container {
+  margin-top: 100px !important;
+}
+
+.video-view-1 {
+  width: 100%;
+  aspect-ratio: 16/9 !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.video-view-1-active {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.btn-play-1 {
+  border: none !important;
+  border-radius: 50% !important;
+  background-color: #d22b2b !important;
+  min-width: 40px !important;
+  width: 80px !important;
+  height: 80px;
+  padding: 0 !important;
+  padding-left: 5px !important;
+}
+
+.btn-play-1:hover {
+  background-color: #d63c3c !important;
+}
+
+.video-view-1 .play-view {
+  width: "100%";
+  aspect-ratio: 16/9;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.video-view-1 .play-view:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.movie-box-container {
+  display: block;
+}
+
+.movie-box-right {
+  width: 100%;
+  margin-top: 25px;
+}
+
+.card-img-box-3 {
+  border-radius: 14px;
+  width: 250px;
+  display: none;
+}
+
+.movie-box-description h2 {
+  color: white;
+}
+
+.txt1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.span1 {
+  color: rgb(179, 174, 174);
+}
+
+.text-white-gray {
+  color: rgb(179, 174, 174);
+}
+
+.theme-color {
+  color: #d22b2b;
+}
+
+.modal-bg-1 {
+  background-color: black;
+}
+
+.link-1 {
+  color: white;
+  text-decoration: none;
+}
+
+.link-1:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 450px) {
+  .title-1 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 560px) {
+  .title-1 {
+    font-size: 50px;
+  }
+  .themed-input-1 {
+    min-width: 280px;
+  }
+  .themed-input-2 {
+    min-width: 280px;
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-1-container-1 {
+    width: 650px;
+  }
+  .title-1 {
+    font-size: 55px;
+  }
+  .card-img-box-3 {
+    border-radius: 14px;
+    width: 200px;
+    display: block;
+  }
+  .movie-box-right {
+    display: inline-flex !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie-box-right {
+    width: 600px;
+    margin-top: 0px;
+    display: block !important;
+  }
+  .movie-box-container {
+    display: inline-flex;
+  }
+  .card-img-box-3 {
+    border-radius: 14px;
+    width: 200px;
+    display: none;
+  }
+}
