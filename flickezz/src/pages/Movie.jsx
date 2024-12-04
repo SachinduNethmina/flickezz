@@ -150,18 +150,31 @@ const Movie = () => {
                     <h6 className="text-white-gray">Genres: {movie?.genres}</h6>
                   </div>
                   <div className="d-inline-flex gap-2 align-items-end">
-                    <i className="bi bi-star-fill theme-color fs-3"></i>
-                    <i className="bi bi-star-fill theme-color fs-3"></i>
-                    <i className="bi bi-star-fill theme-color fs-3"></i>
-                    <i className="bi bi-star-fill theme-color fs-3"></i>
-                    <i className="bi bi-star-fill theme-color fs-3"></i>
-                    <i className="bi bi-star theme-color fs-3"></i>
-                    <i className="bi bi-star theme-color fs-3"></i>
-                    <i className="bi bi-star theme-color fs-3"></i>
-                    <i className="bi bi-star theme-color fs-3"></i>
-                    <i className="bi bi-star theme-color fs-3"></i>
+                    {/* Render filled stars */}
+                    {Array.from({ length: Math.floor(movie?.rating) }).map(
+                      (_, index) => (
+                        <i
+                          key={`full-${index}`}
+                          className="bi bi-star-fill theme-color fs-3"
+                        ></i>
+                      )
+                    )}
+
+                    {/* Render empty stars */}
+                    {Array.from({ length: 10 - Math.floor(movie?.rating) }).map(
+                      (_, index) => (
+                        <i
+                          key={`empty-${index}`}
+                          className="bi bi-star theme-color fs-3"
+                        ></i>
+                      )
+                    )}
+
+                    {/* Display rating text */}
                     <div>
-                      <strong className="text-white fs-3 mt-3">8.1/10</strong>
+                      <strong className="text-white fs-3 mt-3">
+                        {movie?.rating}/10
+                      </strong>
                     </div>
                   </div>
                   <div>
