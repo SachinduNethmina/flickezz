@@ -100,7 +100,7 @@ const Home = () => {
               <SwiperSlide key={index}>
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
-                    movie.title.length > 16 && "..."
+                    movie.title.length > 16 ? "..." : ""
                   }`}
                   image={movie.largeCoverImage}
                   year={movie.year}
@@ -144,7 +144,7 @@ const Home = () => {
               <SwiperSlide key={index}>
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
-                    movie.title.length > 16 && "..."
+                    movie.title.length > 16 ? "..." : ""
                   }`}
                   image={movie.largeCoverImage}
                   year={movie.year}
@@ -165,7 +165,7 @@ const Home = () => {
             <div key={index} className="col-6 col-md-3 col-lg-2 movie-card-box">
               <MovieCard
                 title={`${movie.title.slice(0, 16)}${
-                  movie.title.length > 16 && "..."
+                  movie.title.length > 16 ? "..." : ""
                 }`}
                 image={movie.largeCoverImage}
                 year={movie.year}

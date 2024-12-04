@@ -228,7 +228,7 @@ const Movie = () => {
               <SwiperSlide key={index}>
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
-                    movie.title.length > 16 && "..."
+                    movie.title.length > 16 ? "..." : ""
                   }`}
                   image={movie.largeCoverImage}
                   year={movie.year}
