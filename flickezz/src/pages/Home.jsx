@@ -9,8 +9,11 @@ import MovieCard from "../components/MovieCard";
 import useGetPopularMovies from "../hooks/useGetPopularMovies";
 import useGetLatestMovies from "../hooks/useGetLatestMovies";
 import useLoadForYouMovies from "../hooks/useLoadForYouMovies";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [popular, setPopular] = useState([]);
   const [latest, setLatest] = useState([]);
   const [forYou, setForYou] = useState([]);
@@ -42,6 +45,12 @@ const Home = () => {
     load();
   }, []);
 
+  const [search, setSearch] = useState("");
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim().length > 0) navigate(`/movies?q=${search}`);
+  };
+
   return (
     <>
       <div
@@ -57,14 +66,21 @@ const Home = () => {
             <h5 className="title-2 mt-4">
               Watch your favourite movie online or download
             </h5>
-            <div className="d-inline-flex gap-2 mt-4 mt-md-5">
+            <form
+              className="d-inline-flex gap-2 mt-4 mt-md-5"
+              onSubmit={handleSearch}
+            >
               <input
                 type="text"
                 className="form-control themed-input-1 px-4"
-                placeholder="Search movie or tv series..."
+                placeholder="Search movies..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
-              <button className="btn btn-themed">Search</button>
-            </div>
+              <button className="btn btn-themed" type="submit">
+                Search
+              </button>
+            </form>
           </div>
         </div>
       </div>

@@ -193,18 +193,24 @@ const Movie = () => {
       <div className="container mt-5">
         <h4 className="title-3">Quality</h4>
         <div className="row mt-3">
-          <div className="col-12 d-inline-flex gap-3">
-            {torrents.map((torrent, index) => (
-              <button
-                key={index}
-                className={`btn btn-light ${
-                  torrent.id === activeTorrent && "bg-theme border-0 text-white"
-                }`}
-                onClick={() => handleChangeQuality(torrent.id)}
-              >
-                {torrent.quality}
-              </button>
-            ))}
+          <div className="col-12 d-inline-flex gap-3 overflow-x-auto small-overflow">
+            {torrents.map(
+              (torrent, index) =>
+                torrent.quality.toUpperCase() !== "3D" &&
+                torrent.quality.toUpperCase() !== "2160P" &&
+                torrent.quality.toUpperCase() !== "1440P" && (
+                  <button
+                    key={index}
+                    className={`btn btn-light mb-2 ${
+                      torrent.id === activeTorrent &&
+                      "bg-theme border-0 text-white"
+                    }`}
+                    onClick={() => handleChangeQuality(torrent.id)}
+                  >
+                    {torrent.quality}
+                  </button>
+                )
+            )}
           </div>
         </div>
       </div>

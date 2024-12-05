@@ -11,8 +11,13 @@ import Tag from "../components/Tag";
 import useGetLatestMovies from "../hooks/useGetLatestMovies";
 import useGetPopularMovies from "../hooks/useGetPopularMovies";
 import useSearchMovies from "../hooks/useSearchMovies";
+import { useLocation, useParams } from "react-router-dom";
 
 const Movies = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const searchParam = queryParams.get("q");
+
   const [activeGenre, setActiveGenre] = useState("");
   const [genres, setGenres] = useState([
     { id: 1, name: "Action" },
@@ -62,7 +67,7 @@ const Movies = () => {
   }, [pagePopular]);
 
   const [searchPage, setSearchPage] = useState(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParam || "");
   const [searchedMovies, setSearchedMovies] = useState([]);
   const { searchMovies } = useSearchMovies();
   const [isSearch, setIsSearch] = useState(false);
@@ -87,6 +92,13 @@ const Movies = () => {
     handleSearchMovies();
   }, [activeGenre, searchPage, isSearch]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchPage(1);
+    setSearchedMovies([]);
+    setIsSearch(!isSearch);
+  };
+
   return (
     <>
       <div
@@ -102,7 +114,10 @@ const Movies = () => {
             <h5 className="title-2 mt-4">
               Watch your favourite movie online or download
             </h5>
-            <div className="d-inline-flex gap-2 mt-4 mt-md-5">
+            <form
+              className="d-inline-flex gap-2 mt-4 mt-md-5"
+              onSubmit={handleSearch}
+            >
               <input
                 type="text"
                 className="form-control themed-input-1 px-4"
@@ -110,17 +125,10 @@ const Movies = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button
-                className="btn btn-themed"
-                onClick={() => {
-                  setSearchPage(1);
-                  setSearchedMovies([]);
-                  setIsSearch(!isSearch);
-                }}
-              >
+              <button className="btn btn-themed" type="submit">
                 Search
               </button>
-            </div>
+            </form>
             <div className="mt-4">
               <Swiper
                 spaceBetween={15}

@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import useGetLoggedUser from "../hooks/useGetLoggedUser";
+import Loading from "../components/Loading";
 
 const authContext = createContext();
 export const useAuthContext = () => useContext(authContext);
@@ -13,6 +15,26 @@ export const AuthContextProvider = ({ children }) => {
     setIsNavbarOpen(false);
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [user, setUser] = useState(null);
+  const { getLoggedUser } = useGetLoggedUser();
+  useEffect(() => {
+    const load = async () => {
+      const user = await getLoggedUser();
+      if (user) {
+        setUser(user);
+      }
+      setIsLoading(false);
+    };
+    load();
+  }, []);
+
+  const logout = async () => {
+    localStorage.clear();
+    setUser(null);
+  };
+
   return (
     <authContext.Provider
       value={{
@@ -23,6 +45,10 @@ export const AuthContextProvider = ({ children }) => {
         setRegisterOpened,
         isNavbarOpen,
         setIsNavbarOpen,
+        user,
+        setUser,
+        isLoading,
+        logout,
       }}
     >
       {children}

@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import Loading from "./Loading";
 
 const Header = () => {
+  const { user } = useAuthContext();
+
   const location = useLocation();
-  const { toggleSignInModal, isNavbarOpen, setIsNavbarOpen } = useAuthContext();
+  const {
+    toggleSignInModal,
+    isNavbarOpen,
+    setIsNavbarOpen,
+    isLoading,
+    logout,
+  } = useAuthContext();
   const [isSticky, setIsSticky] = useState(false);
 
   const handleToggle = () => {
@@ -33,6 +42,7 @@ const Header = () => {
 
   return (
     <>
+      {isLoading && <Loading />}
       <nav
         className={`navbar navbar-expand-md px-0 px-md-5 w-100 ${
           isNavbarOpen && "bg-black"
@@ -142,24 +152,63 @@ const Header = () => {
               isNavbarOpen && "show"
             }`}
           >
-            <ul className="navbar-nav gap-3 gap-md-1 text-center">
-              <li className="nav-item">
-                <button
-                  className="btn text-white"
-                  onClick={() => toggleSignInModal(true)}
-                >
-                  Register
-                </button>
-              </li>
-              <li className="nav-item">
-                <button
-                  className="btn btn-light"
-                  onClick={() => toggleSignInModal(false)}
-                >
-                  Sign in
-                </button>
-              </li>
-            </ul>
+            {user ? (
+              <ul className="navbar-nav gap-3 gap-md-1 text-center">
+                <li className="nav-item dropdown">
+                  <button
+                    className="dropdown-toggle bg-transparent border-0 d-inline-flex gap-2 align-items-center"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span className="header-user-name">
+                      {user ? user.name : ""}
+                    </span>
+                    <div>
+                      <img
+                        src={
+                          user && user.photo
+                            ? user.photo
+                            : `https://avatar.iran.liara.run/username?username=${user.name}`
+                        }
+                        className="header-dp"
+                        alt="User"
+                      />
+                    </div>
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-dark">
+                    <li>
+                      <a
+                        className="dropdown-item text-danger"
+                        href="#"
+                        onClick={logout}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            ) : (
+              <ul className="navbar-nav gap-3 gap-md-1 text-center">
+                <li className="nav-item">
+                  <button
+                    className="btn text-white"
+                    onClick={() => toggleSignInModal(true)}
+                  >
+                    Register
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="btn btn-light"
+                    onClick={() => toggleSignInModal(false)}
+                  >
+                    Sign in
+                  </button>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>

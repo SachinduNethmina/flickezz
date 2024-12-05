@@ -6,7 +6,7 @@ import torrentStream from "torrent-stream";
 export const getPopularMovies = async (req, res) => {
   try {
     const { page } = req.query;
-    const limit = 20;
+    const limit = 24;
     let skip = (page ? parseInt(page) - 1 : 0) * limit;
 
     const count = await Movie.count({
@@ -31,7 +31,7 @@ export const getPopularMovies = async (req, res) => {
 export const getLatestMovies = async (req, res) => {
   try {
     const { page } = req.query;
-    const limit = 20;
+    const limit = 24;
     let skip = (page ? parseInt(page) - 1 : 0) * limit;
 
     const count = await Movie.count({
@@ -62,7 +62,7 @@ export const getLatestMovies = async (req, res) => {
 export const getPopularLatestMovies = async (req, res) => {
   try {
     const { page } = req.query;
-    const limit = 20;
+    const limit = 24;
     let skip = (page ? parseInt(page) - 1 : 0) * limit;
 
     const count = await Movie.count({
@@ -93,7 +93,7 @@ export const getPopularLatestMovies = async (req, res) => {
 export const searchMovies = async (req, res) => {
   try {
     const { page, search, genre } = req.query;
-    const limit = 20;
+    const limit = 24;
     let skip = (page ? parseInt(page) - 1 : 0) * limit;
 
     const count = await Movie.count({
@@ -162,7 +162,7 @@ export const loadMovie = async (req, res) => {
 export const loadRecommended = async (req, res) => {
   try {
     const { genres } = req.query;
-    const limit = 20;
+    const limit = 24;
 
     const genreArray = genres.split(",").map((genre) => genre.trim());
 
