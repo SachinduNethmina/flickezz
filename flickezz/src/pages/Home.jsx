@@ -10,6 +10,7 @@ import useGetPopularMovies from "../hooks/useGetPopularMovies";
 import useGetLatestMovies from "../hooks/useGetLatestMovies";
 import useLoadForYouMovies from "../hooks/useLoadForYouMovies";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -52,12 +53,38 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div>
+      <Helmet>
+        <title>
+          Flickezz | Watch Free Movies Online - Latest Movies and Top Films
+        </title>
+        <meta
+          name="description"
+          content="Flickezz offers a wide selection of free movies to watch online, including the latest releases, top-rated films, and classic favorites. Enjoy high-quality movie watching for free."
+        />
+        <meta
+          name="keywords"
+          content="watch free movies online, free movie websites, movies online, new movies, top movies, movie watching, best free movie sites, free online movies, latest movies, movie theater movies, avatar 2, top gun maverick, free movie websites, disney plus movies, movie theaters near me, twister movie, megamind the movie, latest movies at theater, romance movies, best movies, movies of all time, korean movies, hindi movies, tamil movies"
+        />
+        <link rel="canonical" href="https://flickezz.com/" />
+        <meta
+          property="og:title"
+          content="Flickezz | Watch Free Movies Online - Latest Movies and Top Films"
+        />
+        <meta
+          property="og:description"
+          content="Watch free movies on Flickezz. Discover new releases, top-rated films, and classic favorites. Enjoy movies online in HD quality for free."
+        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
+        <meta property="og:url" content="https://flickezz.com/" />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div
         className="container-fluid bg-1 p-0"
         style={{
-          backgroundImage:
-            "url('https://leroux.ca/wtl-content/uploads/2024/01/2023-Watchlist-1200x764.jpg')",
+          backgroundImage: "url('/bg/bg1.png')",
         }}
       >
         <div className="bg-1-container d-flex flex-column justify-content-center align-items-center">
@@ -192,7 +219,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

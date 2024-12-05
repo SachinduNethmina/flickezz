@@ -7,6 +7,7 @@ import { syncDb } from "./config/syncDb.js";
 
 import MovieRoute from "./routes/MoviesRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import SitemapRoute from "./routes/SitemapRoute.js";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -39,6 +40,7 @@ app.use(globalLimiter);
 
 app.use("/api/movies/", MovieRoute);
 app.use("/api/auth/", AuthRoute);
+app.use(SitemapRoute);
 
 const staticFrontend = path.join(__dirname, "flickezz", "dist");
 app.use(express.static(staticFrontend));

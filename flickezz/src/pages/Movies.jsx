@@ -12,6 +12,7 @@ import useGetLatestMovies from "../hooks/useGetLatestMovies";
 import useGetPopularMovies from "../hooks/useGetPopularMovies";
 import useSearchMovies from "../hooks/useSearchMovies";
 import { useLocation, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Movies = () => {
   const location = useLocation();
@@ -101,6 +102,33 @@ const Movies = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          Watch Free Movies Online | Latest & Popular Movies - Flickezz
+        </title>
+        <meta
+          name="description"
+          content="Watch free movies online on Flickezz. Explore the latest movie releases like Avatar 2, Top Gun: Maverick, and popular films such as Twister, Megamind. Enjoy high-quality HD movies across all genres without any subscription."
+        />
+        <meta
+          name="keywords"
+          content="watch free movies online, latest movies, popular movies, avatar 2, top gun maverick, twister movie, megamind, latest movie releases, HD movies online, free movie websites, movies by genre, new releases, top-rated movies, free movie sites"
+        />
+        <link rel="canonical" href="https://flickezz.com/movies" />
+        <meta
+          property="og:title"
+          content="Watch Free Movies Online | Latest & Popular Movies - Flickezz"
+        />
+        <meta
+          property="og:description"
+          content="Watch the latest and most popular free movies online on Flickezz. Enjoy top-rated films like Avatar 2, Top Gun: Maverick, and discover the latest movie releases. No subscription required!"
+        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
+        <meta property="og:url" content="https://flickezz.com/movies" />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div
         className="container-fluid bg-2 p-0"
         style={{

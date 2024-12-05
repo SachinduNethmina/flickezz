@@ -10,12 +10,18 @@ const MovieCard = ({ title, image, year, runtime, slug }) => {
       style={{ borderRadius: "14px", cursor: "pointer" }}
       onClick={() => navigate(`/movies/${slug}`)}
     >
-      <div
-        className="card-img-box"
+      <img
+        src={image}
+        alt={`${title} - Watch Online on Flickezz.com | New Movies and Movie Streaming`}
+        className="card-img-top"
         style={{
-          backgroundImage: `url('${image}')`,
+          borderTopLeftRadius: "14px",
+          borderTopRightRadius: "14px",
+          width: "100%",
+          objectFit: "cover",
+          aspectRatio: "3/4",
         }}
-      ></div>
+      />
       <div className="card-body">
         <h6 className="title-4">{title}</h6>
         <div className="card-footer-box">

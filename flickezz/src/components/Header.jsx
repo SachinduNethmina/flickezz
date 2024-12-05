@@ -58,7 +58,7 @@ const Header = () => {
           <a href="">
             <img
               src="/logo.png"
-              alt=""
+              alt="Flickezz - Best Online Movie Streaming and Latest Movie Releases"
               className={`${isSticky ? "logo-header-sm" : "logo-header"}`}
             />
           </a>

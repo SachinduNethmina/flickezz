@@ -9,19 +9,20 @@ const Footer = () => {
           <div className="col-12 col-md-6 col-lg-5">
             <img
               src="/logo.png"
-              alt=""
+              alt="Flickezz - Best Online Movie Streaming and Latest Movie Releases"
               className="logo-header-sm"
             />
             <p className="mt-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est,
-              magni eligendi porro qui minima autem, quo veniam exercitationem
-              iste soluta sunt impedit sed ipsa? Nam, sequi delectus! Qui,
-              libero ipsa!
+              Flickezz is your go-to platform for streaming the latest movies
+              and TV shows online for free. Watch in HD quality without any
+              subscription required. Enjoy a wide variety of genres and discover
+              top-rated films!
             </p>
 
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-              corrupti ipsam consequuntur odit dolor nemo natus
+              Discover the best in entertainment with Flickezz. Stream your
+              favorite movies, TV series, and more for free in high-quality. No
+              sign-ups, no hassle—just endless entertainment at your fingertips!
             </p>
           </div>
           <div className="col-12 col-md-6 col-lg-7">

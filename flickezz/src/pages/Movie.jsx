@@ -12,6 +12,7 @@ import useLoadRecommended from "../hooks/useLoadRecommended";
 
 import ReactPlayer from "react-player";
 import { BACKEND_URL } from "../api/urls";
+import { Helmet } from "react-helmet";
 
 const Movie = () => {
   const params = useParams();
@@ -71,12 +72,69 @@ const Movie = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {movie?.title
+            ? `${movie?.title} | Watch ${movie?.title} Online - Flickezz`
+            : "Flickezz - Watch Movies Online"}
+        </title>
+
+        <meta
+          name="description"
+          content={
+            movie?.title
+              ? `Watch "${movie?.title}" online in HD on Flickezz. Enjoy the latest release of "${movie?.title}" with a detailed storyline, cast, and reviews. Watch this movie for free with no subscription required.`
+              : "Watch the latest movies online in HD quality for free on Flickezz. Browse movies by genres and enjoy free streaming."
+          }
+        />
+        <meta
+          name="keywords"
+          content={
+            movie?.title
+              ? `${movie?.title}, watch ${movie?.title} online, free movie website, latest movies, free HD movies, movies online, best movie sites, movie genres, ${movie?.genres}, watch movies free, top-rated movies`
+              : "free movies, latest movies, watch movies online, HD movies, movie streaming, best movie websites, watch movies free"
+          }
+        />
+        <link
+          rel="canonical"
+          href={`https://flickezz.com/movies/${movie?.slug || ""}`}
+        />
+        <meta
+          property="og:title"
+          content={
+            movie?.title
+              ? `${movie?.title} | Watch ${movie?.title} Online - Flickezz`
+              : "Flickezz - Watch Movies Online"
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            movie?.title
+              ? `Watch "${movie?.title}" online in HD quality for free on Flickezz. Enjoy the latest release of "${movie?.title}" with high-quality video, detailed information, and cast details.`
+              : "Watch the latest movies online in HD on Flickezz. Browse a wide selection of movies and enjoy free streaming without any subscription."
+          }
+        />
+        <meta
+          property="og:image"
+          content={
+            movie?.largeCoverImage || "https://flickezz.com/og-image.png"
+          }
+        />
+        <meta
+          property="og:url"
+          content={`https://flickezz.com/movies/${movie?.slug || ""}`}
+        />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div className="container">
         <div className="row">
           <div className="col-12 movie-container movie-box-container gap-3">
             <div
               className={`${
-                activeVideo ? "video-view-1-active" : "video-view-1"
+                streamUrl ? "video-view-1-active" : "video-view-1"
               }`}
               style={{
                 backgroundImage:
