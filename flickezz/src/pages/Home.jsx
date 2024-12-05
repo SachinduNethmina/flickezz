@@ -79,6 +79,10 @@ const Home = () => {
         <meta property="og:url" content="https://flickezz.com/" />
         <meta name="author" content="Flickezz" />
         <meta name="robots" content="index, follow" />
+        <meta
+          name="google-site-verification"
+          content="cd5XEGtoKtsYbbQiY3WMcwkJXdP8htexMZmuv0WnSIk"
+        />
       </Helmet>
 
       <div
