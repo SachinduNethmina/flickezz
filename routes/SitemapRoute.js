@@ -148,7 +148,7 @@ router.get("/robots.txt", async (req, res) => {
     const movieCount = await Movie.count();
 
     // Dynamic robots.txt generation
-    let robotsTxt = `User-agent: *\nDisallow:\n\nSitemap: https://flickezz.com/sitemap.xml\n`;
+    let robotsTxt = `User-agent: *\nDisallow:\n\nSitemap: https://flickezz.com/sitemap.xml\nSitemap: https://flickezz.com/sitemap.xml\n`;
 
     // Add individual movie sitemaps dynamically
     const totalBatches = Math.ceil(movieCount / BATCH_SIZE);
