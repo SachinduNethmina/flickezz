@@ -29,8 +29,18 @@ const Movie = () => {
     const load = async () => {
       const movie = await loadMovieData(params.slug);
       setMovie(movie);
-      setTorrents(movie.Torrents);
-      setActiveTorrent(movie.Torrents[0].id);
+      const torr = [
+        ...movie.Torrents.filter(
+          (t) =>
+            t.quality.toUpperCase() !== "3D" &&
+            t.quality.toUpperCase() !== "2160P" &&
+            t.quality.toUpperCase() !== "1440P"
+        ),
+      ];
+      setTorrents(torr);
+      if (torr.length > 0) {
+        setActiveTorrent(torr[0].id);
+      }
     };
     load();
   }, [params]);
