@@ -27,10 +27,7 @@ const Contact = () => {
           property="og:description"
           content="Have questions or need support? Contact Flickezz, the best platform to watch free movies online, for assistance with your movie watching experience and more!"
         />
-        <meta
-          property="og:image"
-          content="https://flickezz.com/og-image.png"
-        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
         <meta property="og:url" content="https://flickezz.com/contact" />
         <meta name="author" content="Flickezz" />
         <meta name="robots" content="index, follow" />

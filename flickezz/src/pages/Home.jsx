@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -111,6 +111,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Popular Movies</h4>
 
@@ -155,6 +156,7 @@ const Home = () => {
           </Swiper>
         </div>
       </div>
+
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Latest Movies</h4>
 

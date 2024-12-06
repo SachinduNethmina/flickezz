@@ -282,7 +282,6 @@ const Movie = () => {
           </div>
         </div>
       </div>
-
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Recommended</h4>
 

@@ -55,13 +55,13 @@ const Header = () => {
         }}
       >
         <div className="container-fluid gap-3 gap-md-0">
-          <a href="">
+          <Link to="/">
             <img
               src="/logo.png"
               alt="Flickezz - Best Online Movie Streaming and Latest Movie Releases"
               className={`${isSticky ? "logo-header-sm" : "logo-header"}`}
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler border-0"
             type="button"
