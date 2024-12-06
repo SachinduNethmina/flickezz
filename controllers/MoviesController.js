@@ -1,7 +1,7 @@
 import { Op, Sequelize } from "sequelize";
 import Movie from "../models/Movie.js";
 import Torrent from "../models/Torrent.js";
-import torrentStream from "torrent-stream";
+import WebTorrent from "webtorrent";
 
 export const getPopularMovies = async (req, res) => {
   try {
@@ -186,81 +186,89 @@ export const loadRecommended = async (req, res) => {
 
 export const streamVideo = async (req, res) => {
   const { id } = req.params;
+
   try {
+    // Find torrent details (e.g., magnet link)
     const torrent = await Torrent.findByPk(id);
 
-    if (torrent) {
-      const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
-      const engine = torrentStream(magnetLink);
-
-      engine.on("ready", () => {
-        const videoFile = engine.files.find((file) =>
-          file.name.match(/\.(mp4|mkv|webm|avi)$/i)
-        );
-
-        if (!videoFile) {
-          res.status(404).send("No video file found in this torrent.");
-          engine.destroy();
-          return;
-        }
-
-        console.log("Streaming file:", videoFile.name);
-
-        const range = req.headers.range;
-        if (!range) {
-          res.status(400).send("Requires Range header");
-          return;
-        }
-
-        const fileSize = videoFile.length;
-        const parts = range.replace(/bytes=/, "").split("-");
-        const start = parseInt(parts[0], 10);
-        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
-        const chunkSize = end - start + 1;
-
-        // Ensure the range is within file bounds
-        if (start >= fileSize || end >= fileSize) {
-          res.status(416).send("Requested range not satisfiable");
-          return;
-        }
-
-        // Dynamically set Content-Type based on the file extension
-        const ext = videoFile.name.split(".").pop().toLowerCase();
-        let contentType = "video/mp4"; // Default to mp4
-        if (ext === "mkv") contentType = "video/x-matroska";
-        if (ext === "webm") contentType = "video/webm";
-        if (ext === "avi") contentType = "video/avi";
-
-        res.writeHead(206, {
-          "Content-Range": `bytes ${start}-${end}/${fileSize}`,
-          "Accept-Ranges": "bytes",
-          "Content-Length": chunkSize,
-          "Content-Type": contentType,
-        });
-
-        const stream = videoFile.createReadStream({ start, end });
-        stream.pipe(res);
-
-        stream.on("error", (err) => {
-          console.error("Stream error:", err);
-          res.end();
-        });
-
-        res.on("close", () => {
-          stream.destroy();
-          engine.destroy();
-        });
-      });
-
-      engine.on("error", (err) => {
-        console.error("Engine error:", err);
-        res.status(500).send("Error processing torrent.");
-      });
-    } else {
-      return res.status(400).json({ status: false, message: "No video found" });
+    if (!torrent) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Torrent not found" });
     }
+
+    const client = new WebTorrent({
+      maxWebConns: 10,
+    });
+    const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
+
+    client.add(magnetLink, (torrent) => {
+      const videoFile = torrent.files.find((file) =>
+        file.name.match(/\.(mp4|mkv|webm|avi)$/i)
+      );
+
+      if (!videoFile) {
+        res.status(404).send("No video file found in this torrent.");
+        client.destroy();
+        return;
+      }
+
+      console.log("Streaming file:", videoFile.name);
+
+      const range = req.headers.range;
+      if (!range) {
+        res.status(400).send("Requires Range header");
+        return;
+      }
+
+      const fileSize = videoFile.length;
+      const parts = range.replace(/bytes=/, "").split("-");
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+      const chunkSize = end - start + 1;
+
+      // Pre-buffer data
+      const bufferSize = 10 * 1024 * 1024; // Buffer 10MB ahead
+      const bufferEnd = Math.min(end + bufferSize, fileSize - 1);
+
+      res.writeHead(206, {
+        "Content-Range": `bytes ${start}-${end}/${fileSize}`,
+        "Accept-Ranges": "bytes",
+        "Content-Length": chunkSize,
+        "Content-Type": "video/mp4", // Adjust depending on the video format
+      });
+
+      const stream = videoFile.createReadStream({ start, end });
+
+      // Pipe the video stream to the response
+      stream.pipe(res);
+
+      stream.on("end", () => {
+        console.log("Finished streaming range:", start, end);
+      });
+
+      stream.on("error", (err) => {
+        console.error("Stream error:", err);
+        res.end();
+      });
+
+      // Handle the client disconnection or response closure
+      res.on("close", () => {
+        console.log("Stream cleaned");
+
+        stream.destroy();
+        client.destroy();
+      });
+    });
+
+    // Handle any errors in the client
+    client.on("error", (err) => {
+      console.error("Client error:", err);
+      res.status(500).send("Error processing torrent.");
+      client.destroy();
+    });
   } catch (error) {
-    console.log(error);
-    return res.status(400).json({ status: false, message: "Invalid request" });
+    console.error("Error in streamVideo:", error);
+    res.status(500).json({ status: false, message: "Internal server error" });
   }
 };
