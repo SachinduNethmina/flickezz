@@ -8,6 +8,8 @@ import Series from "../pages/Series";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import WaitingPage1 from "../pages/WaitingPage1";
+import WaitingPage2 from "../pages/WaitingPage2";
 
 export const publicRoutes = [
   {
@@ -79,6 +81,22 @@ export const publicRoutes = [
     element: (
       <MainLayout>
         <PrivacyPolicy />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/pending-download",
+    element: (
+      <MainLayout>
+        <WaitingPage1 />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/waiting-download",
+    element: (
+      <MainLayout>
+        <WaitingPage2 />
       </MainLayout>
     ),
   },

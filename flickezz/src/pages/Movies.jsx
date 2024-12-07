@@ -13,6 +13,9 @@ import useGetPopularMovies from "../hooks/useGetPopularMovies";
 import useSearchMovies from "../hooks/useSearchMovies";
 import { useLocation, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const Movies = () => {
   const location = useLocation();
@@ -199,6 +202,10 @@ const Movies = () => {
         </div>
       </div>
 
+      <Banner1 />
+
+      <SocialBar />
+
       {searchedMovies.length === 0 && !noSearchedResults && (
         <div className="container mt-5 mb-5">
           <h4 className="title-3">Latest Movies</h4>
@@ -207,7 +214,7 @@ const Movies = () => {
             {latest.map((movie, index) => (
               <div
                 key={index}
-                className="col-6 col-md-3 col-lg-2 movie-card-box"
+                className="col-6 col-md-4 col-lg-2 movie-card-box"
               >
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
@@ -234,6 +241,28 @@ const Movies = () => {
       )}
 
       {searchedMovies.length === 0 && !noSearchedResults && (
+        <>
+          <div className="container mt-5 mb-5">
+            <div className="row">
+              <div className="col-12 col-md-6 col-lg-3">
+                <Banner2 />
+              </div>
+              <div className="col-12 col-md-6 col-lg-3">
+                <Banner2 />
+              </div>
+              <div className="col-12 col-md-6 col-lg-3">
+                <Banner2 />
+              </div>
+              <div className="col-12 col-md-6 col-lg-3">
+                <Banner2 />
+              </div>
+            </div>
+          </div>
+          <Banner1 />
+        </>
+      )}
+
+      {searchedMovies.length === 0 && !noSearchedResults && (
         <div className="container mt-5 mb-5">
           <h4 className="title-3">Popular Movies</h4>
 
@@ -241,7 +270,7 @@ const Movies = () => {
             {popular.map((movie, index) => (
               <div
                 key={index}
-                className="col-6 col-md-3 col-lg-2 movie-card-box"
+                className="col-6 col-md-4 col-lg-2 movie-card-box"
               >
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
@@ -283,7 +312,7 @@ const Movies = () => {
             {searchedMovies.map((movie, index) => (
               <div
                 key={index}
-                className="col-6 col-md-3 col-lg-2 movie-card-box"
+                className="col-6 col-md-4 col-lg-2 movie-card-box"
               >
                 <MovieCard
                   title={`${movie.title.slice(0, 16)}${
@@ -308,6 +337,27 @@ const Movies = () => {
           </div>
         </div>
       )}
+
+      <div className="mb-5">
+        <Banner1 />
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <Banner1 />
+      </div>
     </>
   );
 };

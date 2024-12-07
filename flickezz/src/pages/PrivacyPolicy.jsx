@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/PrivacyPolicy.css";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const PrivacyPolicy = () => {
   return (
@@ -33,6 +36,10 @@ const PrivacyPolicy = () => {
       </Helmet>
 
       <div className="privacy-policy container text-white">
+        <Banner1 />
+
+        <SocialBar />
+
         <div className="row mt-5">
           <div className="col-12 text-center">
             <h1 className="privacy-policy-title">Privacy Policy</h1>
@@ -44,6 +51,7 @@ const PrivacyPolicy = () => {
             </p>
           </div>
         </div>
+
         <div className="row mt-4">
           <div className="col-12">
             <h2 className="privacy-policy-subtitle">Information We Collect</h2>
@@ -107,6 +115,27 @@ const PrivacyPolicy = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="mb-5">
+        <Banner1 />
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <Banner1 />
       </div>
     </div>
   );

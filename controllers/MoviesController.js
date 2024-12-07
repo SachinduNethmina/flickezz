@@ -184,6 +184,56 @@ export const loadRecommended = async (req, res) => {
   }
 };
 
+export const getSubtitles = async (req, res) => {
+  const { id } = req.params;
+  console.log("ok");
+
+  try {
+    // Find torrent details (e.g., magnet link)
+    const torrent = await Torrent.findByPk(id);
+
+    if (!torrent) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Torrent not found" });
+    }
+
+    const client = new WebTorrent({
+      maxWebConns: 10,
+    });
+    const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
+
+    client.add(magnetLink, (torrent) => {
+      console.log("Loading file");
+      // Find subtitle files (e.g., srt, vtt)
+      const subtitleFiles = torrent.files.filter((file) =>
+        file.name.match(/\.(srt|vtt)$/i)
+      );
+
+      // Send subtitles to frontend
+      const subtitleUrls = subtitleFiles.map((file) => ({
+        name: file.name,
+        url: `/subtitles/${file.name}`, // Adjust this path as needed for your server
+      }));
+
+      return res.json({
+        videoUrl: `/stream/${id}`,
+        subtitles: subtitleUrls,
+      });
+    });
+
+    // Handle any errors in the client
+    client.on("error", (err) => {
+      console.error("Client error:", err);
+      res.status(500).send("Error processing torrent.");
+      client.destroy();
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ status: false, message: "Internal server error" });
+  }
+};
+
 export const streamVideo = async (req, res) => {
   const { id } = req.params;
 
@@ -269,6 +319,101 @@ export const streamVideo = async (req, res) => {
     });
   } catch (error) {
     console.error("Error in streamVideo:", error);
+    res.status(500).json({ status: false, message: "Internal server error" });
+  }
+};
+
+export const downloadVideo = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find torrent details (e.g., magnet link)
+    const torrent = await Torrent.findByPk(id);
+
+    if (!torrent) {
+      return res
+        .status(404)
+        .json({ status: false, message: "Torrent not found" });
+    }
+
+    const client = new WebTorrent({
+      maxWebConns: 10, // Limit simultaneous peer connections
+    });
+    const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
+
+    client.add(magnetLink, (torrent) => {
+      const videoFile = torrent.files.find((file) =>
+        file.name.match(/\.(mp4|mkv|webm|avi)$/i)
+      );
+
+      if (!videoFile) {
+        res.status(404).send("No video file found in this torrent.");
+        client.destroy();
+        return;
+      }
+
+      console.log("Downloading and streaming file:", videoFile.name);
+
+      // Set response headers to indicate a file download
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${videoFile.name}"`
+      );
+      res.setHeader("Content-Type", "application/octet-stream");
+
+      // Create a read stream for the file
+      const stream = videoFile.createReadStream();
+
+      // Pipe the file data directly to the client
+      stream.pipe(res);
+
+      stream.on("data", (chunk) => {
+        console.log(`Streaming chunk of size: ${chunk.length} bytes`);
+      });
+
+      stream.on("end", () => {
+        console.log("File streaming complete.");
+        try {
+          client.destroy();
+        } catch (error) {
+          console.log(error);
+        } // Destroy the torrent client after streaming
+      });
+
+      stream.on("error", (err) => {
+        console.error("Error during streaming:", err);
+        res.status(500).send("Error downloading file.");
+        try {
+          client.destroy();
+        } catch (error) {
+          console.log(error);
+        }
+      });
+
+      // Clean up if the client disconnects
+      res.on("close", () => {
+        console.log("Client disconnected.");
+        try {
+          stream.destroy();
+          client.destroy();
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    });
+
+    // Handle errors in the torrent client
+    client.on("error", (err) => {
+      console.error("Torrent client error:", err);
+      res.status(500).send("Error processing torrent.");
+      try {
+        client.destroy();
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  } catch (error) {
+    console.error("Error in downloadVideo:", error);
     res.status(500).json({ status: false, message: "Internal server error" });
   }
 };

@@ -19,6 +19,11 @@ export const AuthContextProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const { getLoggedUser } = useGetLoggedUser();
+
+  const [waiting1, setWaiting1] = useState(true);
+  const [waiting2, setWaiting2] = useState(true);
+  const [waiting3, setWaiting3] = useState(true);
+
   useEffect(() => {
     const load = async () => {
       const user = await getLoggedUser();
@@ -49,6 +54,7 @@ export const AuthContextProvider = ({ children }) => {
         setUser,
         isLoading,
         logout,
+        setIsLoading,
       }}
     >
       {children}

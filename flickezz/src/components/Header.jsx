@@ -55,13 +55,13 @@ const Header = () => {
         }}
       >
         <div className="container-fluid gap-3 gap-md-0">
-          <Link to="/">
+          <a href="/">
             <img
               src="/logo.png"
               alt="Flickezz - Best Online Movie Streaming and Latest Movie Releases"
               className={`${isSticky ? "logo-header-sm" : "logo-header"}`}
             />
-          </Link>
+          </a>
           <button
             className="navbar-toggler border-0"
             type="button"
@@ -95,55 +95,55 @@ const Header = () => {
           >
             <ul className="navbar-nav gap-3 gap-md-1 text-center">
               <li className="nav-item">
-                <Link
+                <a
                   className={`nav-link ${
                     location.pathname === "/" && "nav-link-active"
                   }`}
-                  to={"/"}
+                  href={"/"}
                 >
                   Home
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link
+                <a
                   className={`nav-link ${
                     location.pathname === "/movies" && "nav-link-active"
                   }`}
-                  to={"/movies"}
+                  href={"/movies"}
                 >
                   Movies
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link
+                <a
                   className={`nav-link ${
                     location.pathname === "/about" && "nav-link-active"
                   }`}
-                  to={"/about"}
+                  href={"/about"}
                 >
                   About Us
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link
+                <a
                   className={`nav-link ${
                     location.pathname === "/contact" && "nav-link-active"
                   }`}
-                  to={"/contact"}
+                  href={"/contact"}
                 >
                   Contact
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link
+                <a
                   className={`nav-link ${
                     location.pathname === "/privacy-policies" &&
                     "nav-link-active"
                   }`}
-                  to={"/privacy-policies"}
+                  href={"/privacy-policies"}
                 >
                   Privacy Policy
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

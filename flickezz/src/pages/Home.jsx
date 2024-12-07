@@ -11,13 +11,17 @@ import useGetLatestMovies from "../hooks/useGetLatestMovies";
 import useLoadForYouMovies from "../hooks/useLoadForYouMovies";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const [popular, setPopular] = useState([]);
   const [latest, setLatest] = useState([]);
-  const [forYou, setForYou] = useState([]);
+  const [forYou1, setForYou1] = useState([]);
+  const [forYou2, setForYou2] = useState([]);
 
   const { getPopularMovies } = useGetPopularMovies();
   useEffect(() => {
@@ -41,7 +45,8 @@ const Home = () => {
   useEffect(() => {
     const load = async () => {
       const forYou = await getForYouMovies();
-      setForYou(forYou);
+      setForYou1(forYou.slice(0, 12));
+      setForYou2(forYou.slice(12));
     };
     load();
   }, []);
@@ -49,7 +54,7 @@ const Home = () => {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     e.preventDefault();
-    if (search.trim().length > 0) navigate(`/movies?q=${search}`);
+    window.location.href = `/movies?q=${search}`;
   };
 
   return (
@@ -112,6 +117,8 @@ const Home = () => {
         </div>
       </div>
 
+      <Banner1 />
+
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Popular Movies</h4>
 
@@ -156,6 +163,8 @@ const Home = () => {
           </Swiper>
         </div>
       </div>
+
+      <Banner1 />
 
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Latest Movies</h4>
@@ -202,12 +211,14 @@ const Home = () => {
         </div>
       </div>
 
+      <Banner1 />
+
       <div className="container mt-5 mb-5">
         <h4 className="title-3">For You</h4>
 
         <div className="mt-4 row movie-card-container">
-          {forYou.map((movie, index) => (
-            <div key={index} className="col-6 col-md-3 col-lg-2 movie-card-box">
+          {forYou1.map((movie, index) => (
+            <div key={index} className="col-6 col-md-4 col-lg-2 movie-card-box">
               <MovieCard
                 title={`${movie.title.slice(0, 16)}${
                   movie.title.length > 16 ? "..." : ""
@@ -220,6 +231,66 @@ const Home = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="container mt-5 mb-5">
+        <div className="row">
+          <div className="col-12 col-md-6 col-lg-4">
+            <Banner2 />
+          </div>
+          <div className="col-12 col-md-6 col-lg-4">
+            <Banner2 />
+          </div>
+          <div className="col-12 col-md-6 col-lg-4">
+            <Banner2 />
+          </div>
+        </div>
+      </div>
+
+      <Banner1 />
+
+      <div className="container mt-5 mb-5">
+        <h4 className="title-3">For You</h4>
+
+        <div className="mt-4 row movie-card-container">
+          {forYou2.map((movie, index) => (
+            <div key={index} className="col-6 col-md-4 col-lg-2 movie-card-box">
+              <MovieCard
+                title={`${movie.title.slice(0, 16)}${
+                  movie.title.length > 16 ? "..." : ""
+                }`}
+                image={movie.largeCoverImage}
+                year={movie.year}
+                runtime={movie.runtime}
+                slug={movie.slug}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="container mt-5 mb-5">
+        <div className="row">
+          <div className="col-12 col-md-6 col-lg-3">
+            <Banner2 />
+          </div>
+          <div className="col-12 col-md-6 col-lg-3">
+            <Banner2 />
+          </div>
+          <div className="col-12 col-md-6 col-lg-3">
+            <Banner2 />
+          </div>
+          <div className="col-12 col-md-6 col-lg-3">
+            <Banner2 />
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-5">
+        <SocialBar />
+
+        <Banner1 />
+        <Banner1 />
       </div>
     </div>
   );

@@ -7,12 +7,16 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MovieCard from "../components/MovieCard";
 import useLoadMovieData from "../hooks/useLoadMovieData";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useLoadRecommended from "../hooks/useLoadRecommended";
 
 import ReactPlayer from "react-player";
 import { BACKEND_URL } from "../api/urls";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Cookies from "js-cookie";
+import Banner2 from "../components/Ads/Banner2";
 
 const Movie = () => {
   const params = useParams();
@@ -69,15 +73,51 @@ const Movie = () => {
 
   const [streamUrl, setStreamUrl] = useState(null);
 
-  const handleChangeQuality = (quality) => {
-    window.scrollTo(0, 0);
-    setActiveTorrent(quality);
-    setStreamUrl(null);
+  const [clickedCount, setClickedCount] = useState(0);
 
-    setTimeout(() => {
-      const videoUrl = `${BACKEND_URL}movies/stream/${activeTorrent}`;
-      setStreamUrl(videoUrl);
-    }, 100);
+  const handleChangeQuality = (quality) => {
+    if ((clickedCount + 1) % 2 !== 0) {
+      setClickedCount(clickedCount + 1);
+      // Open the specified link
+      window.open(
+        "https://seatedsaintinsist.com/npnbmfpc8v?key=1491e2f7240193af708e384dc88888cd",
+        "_blank"
+      );
+    } else {
+      setClickedCount(clickedCount + 1);
+      window.scrollTo(0, 0);
+      setActiveTorrent(quality);
+      setStreamUrl(null);
+
+      setTimeout(() => {
+        const videoUrl = `${BACKEND_URL}movies/stream/${activeTorrent}`;
+        setStreamUrl(videoUrl);
+      }, 100);
+    }
+  };
+
+  const downloadMovie = async (q) => {
+    if ((clickedCount + 1) % 2 !== 0) {
+      setClickedCount(clickedCount + 1);
+      // Open the specified link
+      window.open(
+        "https://seatedsaintinsist.com/npnbmfpc8v?key=1491e2f7240193af708e384dc88888cd",
+        "_blank"
+      );
+    } else {
+      Cookies.set("download_link", `${BACKEND_URL}movies/download/${q}`, {
+        expires: 1 / 24,
+      });
+      window.open("/pending-download", "_blank");
+    }
+    // const downloadUrl = `${BACKEND_URL}movies/download/${q}`;
+    // // Create a link to trigger the download
+    // const a = document.createElement("a");
+    // a.href = downloadUrl;
+    // a.download = "";
+    // document.body.appendChild(a);
+    // a.click();
+    // document.body.removeChild(a);
   };
 
   return (
@@ -282,6 +322,33 @@ const Movie = () => {
           </div>
         </div>
       </div>
+
+      <Banner1 />
+
+      <SocialBar />
+
+      <div className="container mt-5">
+        <h4 className="title-3">Download</h4>
+        <div className="row mt-3">
+          <div className="col-12 d-inline-flex gap-3 overflow-x-auto small-overflow">
+            {torrents.map(
+              (torrent, index) =>
+                torrent.quality.toUpperCase() !== "3D" &&
+                torrent.quality.toUpperCase() !== "2160P" &&
+                torrent.quality.toUpperCase() !== "1440P" && (
+                  <button
+                    key={index}
+                    className={`btn btn-success mb-2`}
+                    onClick={() => downloadMovie(torrent.id)}
+                  >
+                    Download {torrent.quality}
+                  </button>
+                )
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className="container mt-5 mb-5">
         <h4 className="title-3">Recommended</h4>
 
@@ -325,6 +392,43 @@ const Movie = () => {
             ))}
           </Swiper>
         </div>
+      </div>
+
+      <div className="mb-5">
+        <Banner1 />
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <Banner1 />
       </div>
     </>
   );

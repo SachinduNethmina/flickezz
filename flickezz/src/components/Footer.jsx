@@ -9,13 +9,13 @@ const Footer = () => {
       <div className="col-12 col-lg-10 offset-0 offset-lg-1">
         <div className="row">
           <div className="col-12 col-md-6 col-lg-5">
-            <Link to={"/"} style={{ cursor: "pointer" }}>
+            <a href={"/"} style={{ cursor: "pointer" }}>
               <img
                 src="/logo.png"
                 alt="Flickezz - Best Free Movies Online and Latest Movie Releases"
                 className="logo-header-sm"
               />
-            </Link>
+            </a>
             <p className="mt-3">
               Flickezz is your go-to platform for Watch the latest movies online
               for free. Watch in HD quality without any subscription required.
@@ -33,37 +33,37 @@ const Footer = () => {
               <div className="col-6 col-md-4 col-lg-3 mt-4 mt-md-5">
                 <h5>Quick Links</h5>
                 <div className="mt-3 d-flex flex-column gap-2">
-                  <Link to="/">Home</Link>
-                  <Link to="/movies">Movies</Link>
+                  <a href="/">Home</a>
+                  <a href="/movies">Movies</a>
                 </div>
               </div>
 
               <div className="col-6 col-md-4 col-lg-3 mt-4 mt-md-5">
                 <h5>Genres</h5>
                 <div className="mt-3 d-flex flex-column gap-2">
-                  <Link to="/movies">Action</Link>
-                  <Link to="/movies">Advanture</Link>
-                  <Link to="/movies">Animation</Link>
-                  <Link to="/movies">Sci-fi</Link>
-                  <Link to="/movies">Comedy</Link>
-                  <Link to="/movies">Crime</Link>
+                  <a href="/movies">Action</a>
+                  <a href="/movies">Advanture</a>
+                  <a href="/movies">Animation</a>
+                  <a href="/movies">Sci-fi</a>
+                  <a href="/movies">Comedy</a>
+                  <a href="/movies">Crime</a>
                 </div>
               </div>
 
               <div className="col-6 col-md-4 col-lg-3 mt-4 mt-md-5">
                 <h5>About</h5>
                 <div className="mt-3 d-flex flex-column gap-2">
-                  <Link to="/about">About Us</Link>
-                  <Link to="/contact">Contact</Link>
-                  <Link>Faq</Link>
+                  <a href="/about">About Us</a>
+                  <a href="/contact">Contact</a>
+                  <a>Faq</a>
                 </div>
               </div>
 
               <div className="col-6 col-md-4 col-lg-3 mt-4 mt-md-5">
                 <h5>Join with us</h5>
                 <div className="mt-3 d-flex flex-column gap-2">
-                  <Link onClick={() => toggleSignInModal(false)}>Login</Link>
-                  <Link onClick={() => toggleSignInModal(true)}>Register</Link>
+                  <a onClick={() => toggleSignInModal(false)}>Login</a>
+                  <a onClick={() => toggleSignInModal(true)}>Register</a>
                 </div>
               </div>
             </div>
@@ -72,9 +72,9 @@ const Footer = () => {
           <div className="col-12 mt-4 d-inline-flex gap-5 align-items-center">
             <small className="copyright">&copy; 2024 Flickezz</small>
             <small className="copyright">
-              <Link to="/privacy-policies">
+              <a href="/privacy-policies">
                 <small>Privacy policies</small>
-              </Link>
+              </a>
             </small>
           </div>
         </div>

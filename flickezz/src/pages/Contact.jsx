@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/Contact.css";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const Contact = () => {
   return (
@@ -46,6 +49,11 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      <Banner1 />
+
+      <SocialBar />
+
       <div className="about-us container text-white">
         <div className="row align-items-center">
           <div className="col-lg-8 col-md-12 mt-5">
@@ -125,6 +133,27 @@ const Contact = () => {
             </ul>
           </div>
         </div>
+      </div>
+
+      <div className="mb-5">
+        <Banner1 />
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <Banner1 />
       </div>
     </>
   );

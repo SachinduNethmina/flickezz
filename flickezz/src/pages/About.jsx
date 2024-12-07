@@ -2,6 +2,9 @@ import React from "react";
 import "../styles/About.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const About = () => {
   return (
@@ -46,6 +49,11 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <Banner1 />
+
+      <SocialBar />
+
       <div className="about-us container text-white">
         <div className="row align-items-center">
           <div className="col-lg-8 col-md-12 mt-5">
@@ -71,12 +79,12 @@ const About = () => {
               button.
             </p>
             <div className="mt-4">
-              <Link
-                to={"/contact"}
+              <a
+                href={"/contact"}
                 className="btn btn-light mt-3 d-flex justify-content-center align-items-center w-25"
               >
                 Contact Us
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -106,6 +114,27 @@ const About = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="mb-5">
+        <Banner1 />
+        <div className="container mt-5 mb-5">
+          <div className="row">
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+            <div className="col-12 col-md-6 col-lg-3">
+              <Banner2 />
+            </div>
+          </div>
+        </div>
+        <Banner1 />
       </div>
     </>
   );
