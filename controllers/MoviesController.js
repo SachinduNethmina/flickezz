@@ -201,7 +201,7 @@ export const getSubtitles = async (req, res) => {
     }
 
     const client = new WebTorrent({
-      maxWebConns: 10,
+      maxWebConns: 50,
     });
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
@@ -250,7 +250,7 @@ export const streamVideo = async (req, res) => {
     }
 
     const client = new WebTorrent({
-      maxWebConns: 10,
+      maxWebConns: 50,
     });
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
@@ -351,7 +351,7 @@ export const downloadVideo = async (req, res) => {
     }
 
     const client = new WebTorrent({
-      maxWebConns: 10, // Limit simultaneous peer connections
+      maxWebConns: 50, // Limit simultaneous peer connections
     });
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
