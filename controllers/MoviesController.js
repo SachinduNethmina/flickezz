@@ -460,14 +460,35 @@ const cleanUpTempFiles = () => {
       return;
     }
 
-    // Delete all files in /tmp/webtorrent
+    // Iterate over each file in the directory
     files.forEach((file) => {
       const filePath = path.join(tmpDir, file);
-      fs.unlink(filePath, (err) => {
+
+      // Check if the path is a file or directory
+      fs.lstat(filePath, (err, stats) => {
         if (err) {
-          console.error("Error deleting file:", filePath, err);
-        } else {
-          console.log("Deleted temporary file:", filePath);
+          console.error("Error checking file stats:", filePath, err);
+          return;
+        }
+
+        if (stats.isDirectory()) {
+          // If it's a directory, remove it recursively
+          fs.rm(filePath, { recursive: true, force: true }, (err) => {
+            if (err) {
+              console.error("Error removing directory:", filePath, err);
+            } else {
+              console.log("Deleted directory:", filePath);
+            }
+          });
+        } else if (stats.isFile()) {
+          // If it's a file, remove it
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.error("Error deleting file:", filePath, err);
+            } else {
+              console.log("Deleted file:", filePath);
+            }
+          });
         }
       });
     });
