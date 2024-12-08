@@ -299,7 +299,7 @@ export const streamVideo = async (req, res) => {
         console.log("Finished streaming range:", start, end);
 
         try {
-          cleanUpTempFiles();
+          cleanUpTempFiles(torrent.name);
         } catch (error) {
           console.log("Temp files clear error", error);
         }
@@ -318,7 +318,7 @@ export const streamVideo = async (req, res) => {
         client.destroy();
 
         try {
-          cleanUpTempFiles();
+          cleanUpTempFiles(torrent.name);
         } catch (error) {
           console.log("Temp files clear error", error);
         }
@@ -356,6 +356,7 @@ export const downloadVideo = async (req, res) => {
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
     client.add(magnetLink, (torrent) => {
+
       const videoFile = torrent.files.find((file) =>
         file.name.match(/\.(mp4|mkv|webm|avi)$/i)
       );
@@ -397,7 +398,7 @@ export const downloadVideo = async (req, res) => {
           console.log("Client distroyed error", error);
         } // Destroy the torrent client after streaming
         try {
-          cleanUpTempFiles();
+          cleanUpTempFiles(torrent.name);
         } catch (error) {
           console.log("Temp files clear error", error);
         }
@@ -428,7 +429,7 @@ export const downloadVideo = async (req, res) => {
         }
 
         try {
-          cleanUpTempFiles();
+          cleanUpTempFiles(torrent.name);
         } catch (error) {
           console.log("Temp files clear error", error);
         }
@@ -451,7 +452,7 @@ export const downloadVideo = async (req, res) => {
   }
 };
 
-const cleanUpTempFiles = () => {
+const cleanUpTempFiles = (torrentName) => {
   const tmpDir = "/tmp/webtorrent/"; // Directory where torrent files are stored
 
   fs.readdir(tmpDir, (err, files) => {
@@ -464,33 +465,27 @@ const cleanUpTempFiles = () => {
     files.forEach((file) => {
       const filePath = path.join(tmpDir, file);
 
-      // Check if the path is a file or directory
-      fs.lstat(filePath, (err, stats) => {
-        if (err) {
-          console.error("Error checking file stats:", filePath, err);
-          return;
-        }
+      // Check if the directory name matches the torrent name
+      if (file.includes(torrentName)) {
+        // You can use a partial name or a full match here
+        fs.lstat(filePath, (err, stats) => {
+          if (err) {
+            console.error("Error checking file stats:", filePath, err);
+            return;
+          }
 
-        if (stats.isDirectory()) {
-          // If it's a directory, remove it recursively
-          fs.rm(filePath, { recursive: true, force: true }, (err) => {
-            if (err) {
-              console.error("Error removing directory:", filePath, err);
-            } else {
-              console.log("Deleted directory:", filePath);
-            }
-          });
-        } else if (stats.isFile()) {
-          // If it's a file, remove it
-          fs.unlink(filePath, (err) => {
-            if (err) {
-              console.error("Error deleting file:", filePath, err);
-            } else {
-              console.log("Deleted file:", filePath);
-            }
-          });
-        }
-      });
+          if (stats.isDirectory()) {
+            // If it's a directory, remove it recursively
+            fs.rm(filePath, { recursive: true, force: true }, (err) => {
+              if (err) {
+                console.error("Error removing directory:", filePath, err);
+              } else {
+                console.log("Deleted directory:", filePath);
+              }
+            });
+          }
+        });
+      }
     });
   });
 };
