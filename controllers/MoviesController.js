@@ -2,6 +2,8 @@ import { Op, Sequelize } from "sequelize";
 import Movie from "../models/Movie.js";
 import Torrent from "../models/Torrent.js";
 import WebTorrent from "webtorrent";
+import fs from "fs";
+import path from "path";
 
 export const getPopularMovies = async (req, res) => {
   try {
@@ -295,6 +297,12 @@ export const streamVideo = async (req, res) => {
 
       stream.on("end", () => {
         console.log("Finished streaming range:", start, end);
+
+        try {
+          cleanUpTempFiles();
+        } catch (error) {
+          console.log("Temp files clear error", error);
+        }
       });
 
       stream.on("error", (err) => {
@@ -308,6 +316,12 @@ export const streamVideo = async (req, res) => {
 
         stream.destroy();
         client.destroy();
+
+        try {
+          cleanUpTempFiles();
+        } catch (error) {
+          console.log("Temp files clear error", error);
+        }
       });
     });
 
@@ -356,7 +370,7 @@ export const downloadVideo = async (req, res) => {
         return;
       }
 
-      console.log("Downloading and streaming file:", videoFile.name);
+      console.log("Downloading file:", videoFile.name);
 
       // Set response headers to indicate a file download
       res.setHeader(
@@ -382,6 +396,11 @@ export const downloadVideo = async (req, res) => {
         } catch (error) {
           console.log("Client distroyed error", error);
         } // Destroy the torrent client after streaming
+        try {
+          cleanUpTempFiles();
+        } catch (error) {
+          console.log("Temp files clear error", error);
+        }
       });
 
       stream.on("error", (err) => {
@@ -407,6 +426,12 @@ export const downloadVideo = async (req, res) => {
         } catch (error) {
           console.log(error);
         }
+
+        try {
+          cleanUpTempFiles();
+        } catch (error) {
+          console.log("Temp files clear error", error);
+        }
       });
     });
 
@@ -424,4 +449,27 @@ export const downloadVideo = async (req, res) => {
     console.error("Error in downloadVideo:", error);
     res.status(500).json({ status: false, message: "Internal server error" });
   }
+};
+
+const cleanUpTempFiles = () => {
+  const tmpDir = "/tmp/webtorrent/"; // Directory where torrent files are stored
+
+  fs.readdir(tmpDir, (err, files) => {
+    if (err) {
+      console.error("Error reading /tmp directory:", err);
+      return;
+    }
+
+    // Delete all files in /tmp/webtorrent
+    files.forEach((file) => {
+      const filePath = path.join(tmpDir, file);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error("Error deleting file:", filePath, err);
+        } else {
+          console.log("Deleted temporary file:", filePath);
+        }
+      });
+    });
+  });
 };
