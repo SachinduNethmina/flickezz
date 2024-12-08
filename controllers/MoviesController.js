@@ -348,7 +348,11 @@ export const downloadVideo = async (req, res) => {
 
       if (!videoFile) {
         res.status(404).send("No video file found in this torrent.");
-        client.destroy();
+        try {
+          client.destroy();
+        } catch (error) {
+          console.log("Client distroyed error", error);
+        }
         return;
       }
 
@@ -376,7 +380,7 @@ export const downloadVideo = async (req, res) => {
         try {
           client.destroy();
         } catch (error) {
-          console.log(error);
+          console.log("Client distroyed error", error);
         } // Destroy the torrent client after streaming
       });
 
@@ -386,7 +390,7 @@ export const downloadVideo = async (req, res) => {
         try {
           client.destroy();
         } catch (error) {
-          console.log(error);
+          console.log("Client distroyed error", error);
         }
       });
 
@@ -395,7 +399,11 @@ export const downloadVideo = async (req, res) => {
         console.log("Client disconnected.");
         try {
           stream.destroy();
-          client.destroy();
+          try {
+            client.destroy();
+          } catch (error) {
+            console.log("Client distroyed error", error);
+          }
         } catch (error) {
           console.log(error);
         }
@@ -409,7 +417,7 @@ export const downloadVideo = async (req, res) => {
       try {
         client.destroy();
       } catch (error) {
-        console.log(error);
+        console.log("Client distroyed error", error);
       }
     });
   } catch (error) {
