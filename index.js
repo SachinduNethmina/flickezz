@@ -55,7 +55,7 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, async () => {
-  logger.info("Server running on port", port);
+  logger.info("Server running on port " + port);
   await dbConnect();
   await syncDb();
 });
