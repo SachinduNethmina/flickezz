@@ -13,6 +13,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 
 import rateLimit from "express-rate-limit";
+import ErrorHandler from "./middlewares/ErrorHandler.js";
+import logger from "./utils/Logger.js";
 
 const globalLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
@@ -40,6 +42,9 @@ app.use(globalLimiter);
 
 app.use("/api/movies/", MovieRoute);
 app.use("/api/auth/", AuthRoute);
+
+// app.use(ErrorHandler);
+
 app.use(SitemapRoute);
 
 const staticFrontend = path.join(__dirname, "flickezz", "dist");
@@ -50,7 +55,7 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, async () => {
-  console.log("Server running on port", port);
+  logger.info("Server running on port", port);
   await dbConnect();
   await syncDb();
 });

@@ -4,6 +4,7 @@ import Torrent from "../models/Torrent.js";
 import WebTorrent from "webtorrent";
 import fs from "fs";
 import path from "path";
+import logger from "../utils/Logger.js";
 
 export const getPopularMovies = async (req, res) => {
   try {
@@ -25,7 +26,7 @@ export const getPopularMovies = async (req, res) => {
 
     return res.json({ status: true, popular, count, limit, pages });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -56,7 +57,7 @@ export const getLatestMovies = async (req, res) => {
 
     return res.json({ status: true, latest, count, limit, pages });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -87,7 +88,7 @@ export const getPopularLatestMovies = async (req, res) => {
 
     return res.json({ status: true, forYou, count, limit, pages });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -136,7 +137,7 @@ export const searchMovies = async (req, res) => {
 
     return res.json({ status: true, results, count, limit, pages });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -156,7 +157,7 @@ export const loadMovie = async (req, res) => {
 
     return res.json({ status: true, movie });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -181,14 +182,13 @@ export const loadRecommended = async (req, res) => {
 
     return res.json({ status: true, movies });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
 
 export const getSubtitles = async (req, res) => {
   const { id } = req.params;
-  console.log("ok");
 
   try {
     // Find torrent details (e.g., magnet link)
@@ -206,7 +206,7 @@ export const getSubtitles = async (req, res) => {
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
     client.add(magnetLink, (torrent) => {
-      console.log("Loading file");
+      logger.info("Loading file");
       // Find subtitle files (e.g., srt, vtt)
       const subtitleFiles = torrent.files.filter((file) =>
         file.name.match(/\.(srt|vtt)$/i)
@@ -226,12 +226,12 @@ export const getSubtitles = async (req, res) => {
 
     // Handle any errors in the client
     client.on("error", (err) => {
-      console.error("Client error:", err);
+      logger.error("Client error:", err);
       res.status(500).send("Error processing torrent.");
       client.destroy();
     });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     res.status(500).json({ status: false, message: "Internal server error" });
   }
 };
@@ -265,7 +265,7 @@ export const streamVideo = async (req, res) => {
         return;
       }
 
-      console.log("Streaming file:", videoFile.name);
+      logger.info("Streaming file: " + videoFile.name);
 
       const range = req.headers.range;
       if (!range) {
@@ -296,23 +296,23 @@ export const streamVideo = async (req, res) => {
       stream.pipe(res);
 
       stream.on("end", () => {
-        console.log("Finished streaming range:", start, end);
+        logger.info("Finished streaming range:" + start + "-" + end);
 
         try {
           cleanUpTempFiles(torrent.name);
         } catch (error) {
-          console.log("Temp files clear error", error);
+          logger.info("Temp files clear error", error);
         }
       });
 
       stream.on("error", (err) => {
-        console.error("Stream error:", err);
+        logger.error("Stream error:", err);
         res.end();
       });
 
       // Handle the client disconnection or response closure
       res.on("close", () => {
-        console.log("Stream cleaned");
+        logger.info("Stream cleaned");
 
         stream.destroy();
         client.destroy();
@@ -320,19 +320,19 @@ export const streamVideo = async (req, res) => {
         try {
           cleanUpTempFiles(torrent.name);
         } catch (error) {
-          console.log("Temp files clear error", error);
+          logger.error("Temp files clear error", error);
         }
       });
     });
 
     // Handle any errors in the client
     client.on("error", (err) => {
-      console.error("Client error:", err);
+      logger.error("Client error:", err);
       res.status(500).send("Error processing torrent.");
       client.destroy();
     });
   } catch (error) {
-    console.error("Error in streamVideo:", error);
+    logger.error("Error in streamVideo:", error);
     res.status(500).json({ status: false, message: "Internal server error" });
   }
 };
@@ -356,7 +356,6 @@ export const downloadVideo = async (req, res) => {
     const magnetLink = `magnet:?xt=urn:btih:${torrent.hash}`;
 
     client.add(magnetLink, (torrent) => {
-
       const videoFile = torrent.files.find((file) =>
         file.name.match(/\.(mp4|mkv|webm|avi)$/i)
       );
@@ -366,12 +365,12 @@ export const downloadVideo = async (req, res) => {
         try {
           client.destroy();
         } catch (error) {
-          console.log("Client distroyed error", error);
+          logger.error("Client distroyed error", error);
         }
         return;
       }
 
-      console.log("Downloading file:", videoFile.name);
+      logger.info("Downloading file:" + videoFile.name);
 
       // Set response headers to indicate a file download
       res.setHeader(
@@ -387,67 +386,67 @@ export const downloadVideo = async (req, res) => {
       stream.pipe(res);
 
       stream.on("data", (chunk) => {
-        console.log(`Streaming chunk of size: ${chunk.length} bytes`);
+        logger.info(`Streaming chunk of size: ${chunk.length} bytes`);
       });
 
       stream.on("end", () => {
-        console.log("File streaming complete.");
+        logger.info("File streaming complete.");
         try {
           client.destroy();
         } catch (error) {
-          console.log("Client distroyed error", error);
+          logger.error("Client distroyed error", error);
         } // Destroy the torrent client after streaming
         try {
           cleanUpTempFiles(torrent.name);
         } catch (error) {
-          console.log("Temp files clear error", error);
+          logger.error("Temp files clear error", error);
         }
       });
 
       stream.on("error", (err) => {
-        console.error("Error during streaming:", err);
+        logger.error("Error during streaming:", err);
         res.status(500).send("Error downloading file.");
         try {
           client.destroy();
         } catch (error) {
-          console.log("Client distroyed error", error);
+          logger.error("Client distroyed error", error);
         }
       });
 
       // Clean up if the client disconnects
       res.on("close", () => {
-        console.log("Client disconnected.");
+        logger.info("Client disconnected.");
         try {
           stream.destroy();
           try {
             client.destroy();
           } catch (error) {
-            console.log("Client distroyed error", error);
+            logger.error("Client distroyed error", error);
           }
         } catch (error) {
-          console.log(error);
+          logger.error(error);
         }
 
         try {
           cleanUpTempFiles(torrent.name);
         } catch (error) {
-          console.log("Temp files clear error", error);
+          logger.error("Temp files clear error", error);
         }
       });
     });
 
     // Handle errors in the torrent client
     client.on("error", (err) => {
-      console.error("Torrent client error:", err);
+      logger.error("Torrent client error:", err);
       res.status(500).send("Error processing torrent.");
       try {
         client.destroy();
       } catch (error) {
-        console.log("Client distroyed error", error);
+        logger.error("Client distroyed error", error);
       }
     });
   } catch (error) {
-    console.error("Error in downloadVideo:", error);
+    logger.error("Error in downloadVideo:", error);
     res.status(500).json({ status: false, message: "Internal server error" });
   }
 };
@@ -457,7 +456,7 @@ const cleanUpTempFiles = (torrentName) => {
 
   fs.readdir(tmpDir, (err, files) => {
     if (err) {
-      console.error("Error reading /tmp directory:", err);
+      logger.error("Error reading /tmp directory:", err);
       return;
     }
 
@@ -470,7 +469,7 @@ const cleanUpTempFiles = (torrentName) => {
         // You can use a partial name or a full match here
         fs.lstat(filePath, (err, stats) => {
           if (err) {
-            console.error("Error checking file stats:", filePath, err);
+            logger.error("Error checking file stats:", filePath, err);
             return;
           }
 
@@ -478,9 +477,9 @@ const cleanUpTempFiles = (torrentName) => {
             // If it's a directory, remove it recursively
             fs.rm(filePath, { recursive: true, force: true }, (err) => {
               if (err) {
-                console.error("Error removing directory:", filePath, err);
+                logger.error("Error removing directory:", filePath, err);
               } else {
-                console.log("Deleted directory:", filePath);
+                logger.info("Deleted directory:" + filePath);
               }
             });
           }

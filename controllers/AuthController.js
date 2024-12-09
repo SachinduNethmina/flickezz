@@ -5,6 +5,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
 } from "../utils/jwtUtil.js";
+import logger from "../utils/Logger.js";
 
 export const register = async (req, res) => {
   try {
@@ -23,7 +24,7 @@ export const register = async (req, res) => {
 
     return res.json({ status: true, message: "User register success" });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -64,7 +65,7 @@ export const login = async (req, res) => {
       exp,
     });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(400).json({ status: false, message: "Invalid request" });
   }
 };
@@ -85,7 +86,7 @@ export const refreshSession = async (req, res) => {
       exp,
     });
   } catch (error) {
-    console.log(error);
+    logger.error(error);
     return res.status(401).json({ status: false, message: "Unauthorize" });
   }
 };
