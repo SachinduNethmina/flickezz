@@ -62,8 +62,8 @@ const Footer = () => {
               <div className="col-6 col-md-4 col-lg-3 mt-4 mt-md-5">
                 <h5>Join with us</h5>
                 <div className="mt-3 d-flex flex-column gap-2">
-                  <a onClick={() => toggleSignInModal(false)}>Login</a>
-                  <a onClick={() => toggleSignInModal(true)}>Register</a>
+                  <a href="#" onClick={() => toggleSignInModal(false)}>Login</a>
+                  <a href="#" onClick={() => toggleSignInModal(true)}>Register</a>
                 </div>
               </div>
             </div>

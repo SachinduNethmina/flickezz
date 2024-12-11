@@ -10,6 +10,9 @@ import Contact from "../pages/Contact";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import WaitingPage1 from "../pages/WaitingPage1";
 import WaitingPage2 from "../pages/WaitingPage2";
+import Blog from "../pages/Blog";
+import BlogCategory from "../pages/BlogCategory";
+import ViewBlog from "../components/ViewBlog";
 
 export const publicRoutes = [
   {
@@ -100,4 +103,28 @@ export const publicRoutes = [
       </MainLayout>
     ),
   },
+  // {
+  //   path: "/blog",
+  //   element: (
+  //     <MainLayout>
+  //       <Blog />
+  //     </MainLayout>
+  //   ),
+  // },
+  // {
+  //   path: "/blog/category/:category",
+  //   element: (
+  //     <MainLayout>
+  //       <BlogCategory />
+  //     </MainLayout>
+  //   ),
+  // },
+  // {
+  //   path: "/blog/:slug",
+  //   element: (
+  //     <MainLayout>
+  //       <ViewBlog />
+  //     </MainLayout>
+  //   ),
+  // },
 ];

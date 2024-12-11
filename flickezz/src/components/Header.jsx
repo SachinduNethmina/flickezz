@@ -114,6 +114,16 @@ const Header = () => {
                   Movies
                 </a>
               </li>
+              {/* <li className="nav-item">
+                <a
+                  className={`nav-link ${
+                    location.pathname === "/blog" && "nav-link-active"
+                  }`}
+                  href={"/blog"}
+                >
+                  Blog
+                </a>
+              </li> */}
               <li className="nav-item">
                 <a
                   className={`nav-link ${
