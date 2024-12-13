@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { publicRoutes } from "./routes/routes";
+import { adminRoutes, publicRoutes } from "./routes/routes";
 import { AuthContextProvider } from "./context/AuthContext";
 
 const App = () => {
@@ -9,6 +9,9 @@ const App = () => {
       <AuthContextProvider>
         <Routes>
           {publicRoutes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element} />
+          ))}
+          {adminRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
         </Routes>

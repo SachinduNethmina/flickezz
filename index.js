@@ -8,6 +8,7 @@ import { syncDb } from "./config/syncDb.js";
 import MovieRoute from "./routes/MoviesRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 import SitemapRoute from "./routes/SitemapRoute.js";
+import BlogRoute from "./routes/BlogRoute.js";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -40,9 +41,12 @@ app.use(
 );
 app.use(globalLimiter);
 
+
 app.use("/api/movies/", MovieRoute);
 app.use("/api/auth/", AuthRoute);
+app.use("/api/blog/", BlogRoute);
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // app.use(ErrorHandler);
 
 app.use(SitemapRoute);

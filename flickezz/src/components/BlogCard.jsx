@@ -1,19 +1,35 @@
 import React from "react";
+import { formatDate } from "../helpers/DateHelper";
+import { BASE_URL } from "../api/urls";
 
-const BlogCard = () => {
+const BlogCard = ({ image, category, title, date, slug, categorySlug }) => {
   return (
     <div className="card border-0 rounded-0 bg-black">
       <img
-        src="https://neilpatel.com/wp-content/uploads/2017/09/blog-post-image-guide.jpg"
+        src={`${BASE_URL}${image}`}
         className="card-img-top rounded-0"
         alt="..."
+        style={{ cursor: "pointer" }}
+        onClick={() => (window.location.href = `/blog/${slug}`)}
       />
       <div className="card-body text-white py-3 px-1">
-        <h5 className="card-title theme-color">TRAVEL</h5>
-        <h5 className="card-title">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        <h5
+          className="card-title theme-color"
+          style={{ cursor: "pointer" }}
+          onClick={() =>
+            (window.location.href = `/blogs/search?category=${categorySlug}`)
+          }
+        >
+          {category}
         </h5>
-        <small className="text-white">20, April 2023</small>
+        <h5
+          className="card-title"
+          style={{ cursor: "pointer" }}
+          onClick={() => (window.location.href = `/blog/${slug}`)}
+        >
+          {title?.length > 50 ? `${title?.slice(0, 50)}...` : title}
+        </h5>
+        <small className="text-white">{formatDate(date)}</small>
       </div>
     </div>
   );

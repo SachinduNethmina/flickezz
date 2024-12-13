@@ -107,7 +107,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Enter email"
                         name="email"
                         value={loginData.email}
@@ -120,7 +120,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="password"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Enter password"
                         name="password"
                         value={loginData.password}
@@ -152,7 +152,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Enter name"
                         name="name"
                         value={registerData.name}
@@ -165,7 +165,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="text"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Enter email"
                         name="email"
                         value={registerData.email}
@@ -178,7 +178,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="password"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Enter password"
                         name="password"
                         value={registerData.password}
@@ -191,7 +191,7 @@ const SignInModal = () => {
                       </label>
                       <input
                         type="password"
-                        className="form-control bg-dark text-white h-45"
+                        className="form-control bg-dark text-white h-45 inpp-1"
                         placeholder="Retype password"
                         name="retypePassword"
                         value={registerData.retypePassword}

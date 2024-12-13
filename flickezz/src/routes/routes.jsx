@@ -12,7 +12,9 @@ import WaitingPage1 from "../pages/WaitingPage1";
 import WaitingPage2 from "../pages/WaitingPage2";
 import Blog from "../pages/Blog";
 import BlogCategory from "../pages/BlogCategory";
-import ViewBlog from "../components/ViewBlog";
+import ViewBlog from "../pages/ViewBlog";
+import CreateBlog from "../pages/admin/CreateBlog";
+import AdminRoute from "./AdminRoute";
 
 export const publicRoutes = [
   {
@@ -103,28 +105,41 @@ export const publicRoutes = [
       </MainLayout>
     ),
   },
-  // {
-  //   path: "/blog",
-  //   element: (
-  //     <MainLayout>
-  //       <Blog />
-  //     </MainLayout>
-  //   ),
-  // },
-  // {
-  //   path: "/blog/category/:category",
-  //   element: (
-  //     <MainLayout>
-  //       <BlogCategory />
-  //     </MainLayout>
-  //   ),
-  // },
-  // {
-  //   path: "/blog/:slug",
-  //   element: (
-  //     <MainLayout>
-  //       <ViewBlog />
-  //     </MainLayout>
-  //   ),
-  // },
+  {
+    path: "/blog",
+    element: (
+      <MainLayout>
+        <Blog />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/blogs/search",
+    element: (
+      <MainLayout>
+        <BlogCategory />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/blog/:slug",
+    element: (
+      <MainLayout>
+        <ViewBlog />
+      </MainLayout>
+    ),
+  },
+];
+
+export const adminRoutes = [
+  {
+    path: "/admin/create-blog",
+    element: (
+      <AdminRoute>
+        <MainLayout>
+          <CreateBlog />
+        </MainLayout>
+      </AdminRoute>
+    ),
+  },
 ];
