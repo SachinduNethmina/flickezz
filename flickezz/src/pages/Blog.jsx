@@ -138,7 +138,7 @@ const Blog = () => {
                     <div
                       className="blog-bg-1 p-4 p-lg-4 d-flex flex-column justify-content-end gap-1"
                       onClick={() =>
-                        (window.location.href = `/blog/${latest[0]?.slug}`)
+                        (window.location.href = `/blog/${latest[1]?.slug}`)
                       }
                     >
                       <h4
@@ -170,7 +170,7 @@ const Blog = () => {
                   <div
                     className="col-12 col-md-6 col-lg-12 mt-4 mt-md-0 mt-lg-0 blog-bg"
                     onClick={() =>
-                      (window.location.href = `/blog/${latest[0]?.slug}`)
+                      (window.location.href = `/blog/${latest[2]?.slug}`)
                     }
                   >
                     <img
