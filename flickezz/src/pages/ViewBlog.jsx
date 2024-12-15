@@ -100,7 +100,7 @@ const ViewBlog = () => {
 
             {blog?.BlogContents?.map((content, index) => (
               <div key={index} className="col-12 d-flex flex-column mt-3">
-                <h2>{content?.title}</h2>
+                {content?.title && <h2>{content?.title}</h2>}
                 {content?.image && (
                   <div>
                     <img
