@@ -7,7 +7,8 @@ const useSaveBlog = () => {
     categoryId,
     title,
     description,
-    sections
+    sections,
+    metaDescription
   ) => {
     const status = handleErrors(
       image,
@@ -26,6 +27,7 @@ const useSaveBlog = () => {
     formData.append("title", title);
     formData.append("description", description);
     formData.append("count", sections.length);
+    formData.append("metaDescription", metaDescription);
 
     for (let i = 0; i < sections.length; i++) {
       if (sections[i].image) formData.append(`image${i}`, sections[i].image);

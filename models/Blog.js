@@ -33,6 +33,10 @@ const Blog = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    metaDescription: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   },
   { timestamps: true, underscored: true }
 );

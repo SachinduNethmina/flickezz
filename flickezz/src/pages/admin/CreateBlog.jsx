@@ -10,6 +10,7 @@ const CreateBlog = () => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("0");
   const [title, setTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
 
   const [mainEditor, setMainEditor] = useState(null);
 
@@ -104,7 +105,8 @@ const CreateBlog = () => {
           title: s.title,
           description: s.descriptionEditor.root.innerHTML,
         };
-      })
+      }),
+      metaDescription
     );
 
     if (status) {
@@ -175,6 +177,19 @@ const CreateBlog = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
+                </div>
+                <div className="col-12 mt-2">
+                  <label htmlFor="" className="form-label">
+                    Meta Description
+                  </label>
+                  <textarea
+                    type="text"
+                    className="form-control bg-black inpp-1"
+                    value={metaDescription}
+                    onChange={(e) => setMetaDescription(e.target.value)}
+                    cols={5}
+                    rows={5}
+                  ></textarea>
                 </div>
                 <div className="col-12 mt-2">
                   <label htmlFor="" className="form-label">
