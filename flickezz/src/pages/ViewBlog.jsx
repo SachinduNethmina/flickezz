@@ -107,7 +107,7 @@ const ViewBlog = () => {
                       src={`${BASE_URL}${content?.image}`}
                       alt=""
                       className="mt-3"
-                      style={{ maxHeight: "300px", width: "100%" }}
+                      style={{ width: "100%" }}
                     />
                   </div>
                 )}
