@@ -10,6 +10,7 @@ import BlogCardX from "../components/BlogCardX";
 import axios from "axios";
 import { BACKEND_URL, BASE_URL } from "../api/urls";
 import { formatDate } from "../helpers/DateHelper";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   const [latest, setLatest] = useState([]);
@@ -54,6 +55,33 @@ const Blog = () => {
 
   return (
     <div className="container">
+      <Helmet>
+        <title>
+          Flickezz Blog - Beauty, Style, Home, Tech & Lifestyle Trends
+        </title>
+        <meta
+          name="description"
+          content="Explore the Flickezz Blog for the latest in Beauty, Style, Home, Tech, and Lifestyle. Discover expert tips, trending news, creative ideas, and inspiration across multiple categories to enrich your life."
+        />
+        <meta
+          name="keywords"
+          content="Flickezz Blog, Beauty tips, Style trends, Home decor, Tech news, Lifestyle advice, Wellness, Fashion inspiration, DIY ideas, Technology insights, Creative living"
+        />
+        <link rel="canonical" href="https://flickezz.com/blog" />
+        <meta
+          property="og:title"
+          content="Flickezz Blog - Beauty, Style, Tech, Home & Lifestyle Inspiration"
+        />
+        <meta
+          property="og:description"
+          content="Discover Flickezz Blog for beauty tips, style inspiration, home decor ideas, tech news, and lifestyle trends. Your all-in-one destination for creative living!"
+        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
+        <meta property="og:url" content="https://flickezz.com/blog" />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div className="row">
         <div className="col-12">
           <div className="row" style={{ marginTop: "80px" }}>

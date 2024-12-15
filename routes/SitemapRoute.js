@@ -1,5 +1,6 @@
 import express from "express";
 import Movie from "../models/Movie.js";
+import Blog from "../models/Blog.js";
 const router = express.Router();
 
 // Batch size per request (adjust as needed)
@@ -54,6 +55,13 @@ router.get("/sitemap.xml", async (req, res) => {
       `;
     }
 
+    sitemapIndex += `
+        <sitemap>
+          <loc>https://flickezz.com/sitemap-blog.xml</loc>
+          <lastmod>2024-12-05</lastmod>
+        </sitemap>
+      `;
+
     sitemapIndex += "</sitemapindex>";
 
     // Set the content type and send the response
@@ -102,6 +110,18 @@ router.get("/sitemap-main.xml", (req, res) => {
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
+    <url>
+      <loc>https://flickezz.com/blog</loc>
+      <lastmod>2024-12-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    <url>
+      <loc>https://flickezz.com/blogs/search</loc>
+      <lastmod>2024-12-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
   `;
 
   sitemap += "</urlset>";
@@ -142,13 +162,38 @@ router.get("/sitemap-movies-:index.xml", async (req, res) => {
   res.send(sitemap);
 });
 
+router.get("/sitemap-blog.xml", async (req, res) => {
+  let sitemap = '<?xml version="1.0" encoding="UTF-8"?>';
+  sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+  try {
+    const blogs = await Blog.findAll();
+    blogs.forEach((blog) => {
+      sitemap += `
+      <url>
+        <loc>https://flickezz.com/blog/${blog.slug}</loc>
+        <lastmod>${formatLocalISODate(blog.updatedAt)}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+      </url>
+    `;
+    });
+  } catch (error) {}
+
+  sitemap += "</urlset>";
+
+  // Set the content type and send the response
+  res.header("Content-Type", "application/xml");
+  res.send(sitemap);
+});
+
 // Generate robots.txt with dynamic sitemaps
 router.get("/robots.txt", async (req, res) => {
   try {
     const movieCount = await Movie.count();
 
     // Dynamic robots.txt generation
-    let robotsTxt = `User-agent: *\nDisallow:\n\nSitemap: https://flickezz.com/sitemap.xml\nSitemap: https://flickezz.com/sitemap-main.xml\n`;
+    let robotsTxt = `User-agent: *\nDisallow:\n\nSitemap: https://flickezz.com/sitemap.xml\nSitemap: https://flickezz.com/sitemap-main.xml\nSitemap: https://flickezz.com/sitemap-blog.xml\n`;
 
     // Add individual movie sitemaps dynamically
     const totalBatches = Math.ceil(movieCount / BATCH_SIZE);

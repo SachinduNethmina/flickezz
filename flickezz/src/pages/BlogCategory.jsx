@@ -40,6 +40,33 @@ const BlogCategory = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          Search Flickezz Blog - Find Beauty, Style, Tech & Lifestyle Ideas
+        </title>
+        <meta
+          name="description"
+          content="Search through the Flickezz Blog for the best in Beauty, Style, Tech, Home, and Lifestyle. Quickly find expert tips, trending news, and creative ideas tailored to your interests."
+        />
+        <meta
+          name="keywords"
+          content="Flickezz Blog search, Beauty tips, Style trends, Tech news, Home decor, Lifestyle inspiration, Fashion advice, Technology updates, Wellness, DIY ideas"
+        />
+        <link rel="canonical" href="https://flickezz.com/blogs/search" />
+        <meta
+          property="og:title"
+          content="Search Flickezz Blog - Explore Beauty, Style, Tech & Lifestyle Topics"
+        />
+        <meta
+          property="og:description"
+          content="Search the Flickezz Blog for beauty, tech, home, and lifestyle tips. Discover trending topics and expert advice tailored to your needs."
+        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
+        <meta property="og:url" content="https://flickezz.com/blogs/search" />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div
         className="container-fluid bg-2 p-0"
         style={{

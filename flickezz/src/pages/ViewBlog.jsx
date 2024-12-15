@@ -74,6 +74,33 @@ const ViewBlog = () => {
 
   return (
     <>
+      <Helmet>
+        <title>
+          {`Flickezz Blog - Read ${blog?.title} on Beauty, Style, Tech & More`}
+        </title>
+        <meta
+          name="description"
+          content={`Dive into ${blog?.title} on Flickezz Blog. Explore engaging content on Beauty, Style, Tech, Home, and Lifestyle to inspire and enrich your everyday life.`}
+        />
+        <meta
+          name="keywords"
+          content={`${blog?.title}, Flickezz Blog, Beauty tips, Style trends, Tech insights, Home decor, Lifestyle advice, Fashion, Wellness, Creative living, ${blog?.keywords}`}
+        />
+        <link rel="canonical" href={`https://flickezz.com/blog/${slug}`} />
+        <meta
+          property="og:title"
+          content={`Flickezz Blog - ${blog?.title} | Beauty, Style, Tech & Lifestyle`}
+        />
+        <meta
+          property="og:description"
+          content={`Read ${blog?.title} on Flickezz Blog. ${blog?.metaDescription}`}
+        />
+        <meta property="og:image" content="https://flickezz.com/og-image.png" />
+        <meta property="og:url" content={`https://flickezz.com/blog/${slug}`} />
+        <meta name="author" content="Flickezz" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div
         className="container-fluid bg-2 p-0"
         style={{
@@ -96,7 +123,10 @@ const ViewBlog = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 d-flex flex-column col-lg-9 text-white">
-            <div className="blog-artical-div" dangerouslySetInnerHTML={{ __html: blog?.description }}></div>
+            <div
+              className="blog-artical-div"
+              dangerouslySetInnerHTML={{ __html: blog?.description }}
+            ></div>
 
             {blog?.BlogContents?.map((content, index) => (
               <div key={index} className="col-12 d-flex flex-column mt-3">
