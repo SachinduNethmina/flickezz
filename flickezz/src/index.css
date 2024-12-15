@@ -469,7 +469,7 @@
   height: 25px;
 }
 
-.inpp-1{
+.inpp-1 {
   color: white !important;
 }
 
@@ -477,7 +477,7 @@
   color: rgb(172, 166, 166) !important;
 }
 
-.div-img-1{
+.div-img-1 {
   cursor: pointer;
   width: 100%;
   height: 250px;
@@ -485,6 +485,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.img-blog-bg {
+  width: 100%;
+  max-height: none;
 }
 
 @media (min-width: 450px) {
@@ -519,6 +524,10 @@
   }
   .movie-box-right {
     display: inline-flex !important;
+  }
+  .img-blog-bg {
+    width: auto;
+    max-height: 350px;
   }
 }
 
