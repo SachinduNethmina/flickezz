@@ -112,7 +112,7 @@ const ViewBlog = () => {
                 )}
 
                 <div
-                  className="mt-3"
+                  className="mt-3 fs-5"
                   dangerouslySetInnerHTML={{ __html: content?.description }}
                 ></div>
               </div>
