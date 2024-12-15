@@ -11,6 +11,7 @@ import Tag from "../components/Tag";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../api/urls";
+import { Helmet } from "react-helmet";
 
 const BlogCategory = () => {
   const location = useLocation();

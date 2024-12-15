@@ -13,6 +13,7 @@ import axios from "axios";
 import { BACKEND_URL, BASE_URL, MEDIA_URL } from "../api/urls";
 import { formatDate } from "../helpers/DateHelper";
 import useSubmitComment from "../hooks/useSubmitComment";
+import { Helmet } from "react-helmet";
 
 const ViewBlog = () => {
   const { slug } = useParams();
