@@ -102,12 +102,14 @@ const ViewBlog = () => {
               <div key={index} className="col-12 d-flex flex-column mt-3">
                 <h2>{content?.title}</h2>
                 {content?.image && (
-                  <img
-                    src={`${BASE_URL}${content?.image}`}
-                    alt=""
-                    className="mt-3"
-                    style={{ maxHeight: "300px", width: "auto" }}
-                  />
+                  <div>
+                    <img
+                      src={`${BASE_URL}${content?.image}`}
+                      alt=""
+                      className="mt-3"
+                      style={{ maxHeight: "300px", width: "auto" }}
+                    />
+                  </div>
                 )}
 
                 <div
