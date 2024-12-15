@@ -39,6 +39,9 @@ app.use(
     origin: [process.env.ORIGIN1],
   })
 );
+app.use(express.json({ limit: '100mb' }));  // Adjust '10mb' as needed
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
+
 app.use(globalLimiter);
 
 
