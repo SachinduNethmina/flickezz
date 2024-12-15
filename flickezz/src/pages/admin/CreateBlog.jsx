@@ -11,6 +11,7 @@ const CreateBlog = () => {
   const [category, setCategory] = useState("0");
   const [title, setTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
+  const [keywords, setKeywords] = useState("");
 
   const [mainEditor, setMainEditor] = useState(null);
 
@@ -106,7 +107,8 @@ const CreateBlog = () => {
           description: s.descriptionEditor.root.innerHTML,
         };
       }),
-      metaDescription
+      metaDescription,
+      keywords
     );
 
     if (status) {
@@ -177,6 +179,19 @@ const CreateBlog = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
+                </div>
+                <div className="col-12 mt-2">
+                  <label htmlFor="" className="form-label">
+                    Keywords
+                  </label>
+                  <textarea
+                    type="text"
+                    className="form-control bg-black inpp-1"
+                    value={keywords}
+                    onChange={(e) => setKeywords(e.target.value)}
+                    cols={5}
+                    rows={5}
+                  ></textarea>
                 </div>
                 <div className="col-12 mt-2">
                   <label htmlFor="" className="form-label">
