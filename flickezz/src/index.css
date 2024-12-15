@@ -492,6 +492,10 @@
   max-height: none;
 }
 
+.blog-artical-div p {
+  font-size: 14px;
+}
+
 @media (min-width: 450px) {
   .title-1 {
     font-size: 40px;
