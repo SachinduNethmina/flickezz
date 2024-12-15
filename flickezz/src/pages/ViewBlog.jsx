@@ -96,7 +96,7 @@ const ViewBlog = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-12 d-flex flex-column col-lg-9 text-white">
-            <div dangerouslySetInnerHTML={{ __html: blog?.description }}></div>
+            <div className="blog-artical-div" dangerouslySetInnerHTML={{ __html: blog?.description }}></div>
 
             {blog?.BlogContents?.map((content, index) => (
               <div key={index} className="col-12 d-flex flex-column mt-3">
