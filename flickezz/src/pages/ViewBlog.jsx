@@ -14,6 +14,9 @@ import { BACKEND_URL, BASE_URL, MEDIA_URL } from "../api/urls";
 import { formatDate } from "../helpers/DateHelper";
 import useSubmitComment from "../hooks/useSubmitComment";
 import { Helmet } from "react-helmet";
+import Banner2 from "../components/Ads/Banner2";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
 
 const ViewBlog = () => {
   const { slug } = useParams();
@@ -120,6 +123,8 @@ const ViewBlog = () => {
           </div>
         </div>
       </div>
+
+      <Banner1 />
 
       <div className="container mt-5">
         <div className="row">
@@ -259,9 +264,24 @@ const ViewBlog = () => {
                 </div>
               </div>
             </div>
+
+            <Banner1 />
+            <SocialBar />
+            <Banner1 />
           </div>
 
-          <div className="col-12 col-lg-3"></div>
+          <div className="col-12 col-lg-3">
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+          </div>
         </div>
       </div>
     </>

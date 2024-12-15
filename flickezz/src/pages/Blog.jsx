@@ -11,6 +11,9 @@ import axios from "axios";
 import { BACKEND_URL, BASE_URL } from "../api/urls";
 import { formatDate } from "../helpers/DateHelper";
 import { Helmet } from "react-helmet";
+import Banner2 from "../components/Ads/Banner2";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner1 from "../components/Ads/Banner1";
 
 const Blog = () => {
   const [latest, setLatest] = useState([]);
@@ -204,6 +207,8 @@ const Blog = () => {
             </div>
           </div>
 
+          <Banner1 />
+
           <div className="row">
             <div className="col-12 col-lg-9">
               <div className="row mt-5">
@@ -307,9 +312,24 @@ const Blog = () => {
                   </button>
                 </div>
               </div>
+
+              <Banner1 />
+              <SocialBar />
+              <Banner1 />
             </div>
 
-            <div className="col-12 col-lg-3"></div>
+            <div className="col-12 col-lg-3">
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+              <Banner2 />
+            </div>
           </div>
         </div>
       </div>

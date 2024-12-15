@@ -12,6 +12,9 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../api/urls";
 import { Helmet } from "react-helmet";
+import Banner1 from "../components/Ads/Banner1";
+import SocialBar from "../components/Ads/SocialBar";
+import Banner2 from "../components/Ads/Banner2";
 
 const BlogCategory = () => {
   const location = useLocation();
@@ -99,6 +102,8 @@ const BlogCategory = () => {
         </div>
       </div>
 
+      <Banner1 />
+
       <div className="container">
         <div className="row">
           <div className="col-12 col-lg-9">
@@ -130,9 +135,24 @@ const BlogCategory = () => {
                 </button>
               </div>
             </div>
+
+            <Banner1 />
+            <SocialBar />
+            <Banner1 />
           </div>
 
-          <div className="col-12 col-lg-3"></div>
+          <div className="col-12 col-lg-3">
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+            <Banner2 />
+          </div>
         </div>
       </div>
     </>

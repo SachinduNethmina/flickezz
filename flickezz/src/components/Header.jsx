@@ -114,7 +114,7 @@ const Header = () => {
                   Movies
                 </a>
               </li>
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <a
                   className={`nav-link ${
                     location.pathname === "/blog" && "nav-link-active"
@@ -123,7 +123,7 @@ const Header = () => {
                 >
                   Blog
                 </a>
-              </li> */}
+              </li>
               <li className="nav-item">
                 <a
                   className={`nav-link ${
