@@ -1,14 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { SwiperSlide } from "swiper/react";
 
 const MovieCard = ({ title, image, year, runtime, slug }) => {
-  const navigate = useNavigate();
   return (
     <div
       className="card p-0 border-0 shadow-sm bg-dark mb-5"
       style={{ borderRadius: "14px", cursor: "pointer" }}
-      onClick={() => navigate(`/movies/${slug}`)}
+      onClick={() => {
+        window.location.href = `/movies/${slug}`;
+      }}
     >
       <img
         src={image}
