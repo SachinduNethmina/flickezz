@@ -77,6 +77,10 @@ const Movie = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    imdbCode: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   { timestamps: true, underscored: true }
 );

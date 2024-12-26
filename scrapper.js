@@ -76,6 +76,7 @@ const scrap = async () => {
           mediumCoverImage: m.medium_cover_image,
           largeCoverImage: m.large_cover_image,
           dateUploaded: m.date_uploaded_unix,
+          imdbCode: m.imdb_code,
         });
 
         const torrents = m.torrents;

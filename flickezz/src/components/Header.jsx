@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import Loading from "./Loading";
+import { isChristmas } from "../helpers/OptionsHelper";
+import SnowFlakes from "./snow/SnowFlakes";
 
 const Header = () => {
   const { user } = useAuthContext();
@@ -117,16 +119,6 @@ const Header = () => {
               <li className="nav-item">
                 <a
                   className={`nav-link ${
-                    location.pathname === "/blog" && "nav-link-active"
-                  }`}
-                  href={"/blog"}
-                >
-                  Blog
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className={`nav-link ${
                     location.pathname === "/about" && "nav-link-active"
                   }`}
                   href={"/about"}
@@ -230,6 +222,7 @@ const Header = () => {
           </div>
         </div>
       )} */}
+      {isChristmas() && <SnowFlakes />}
     </>
   );
 };

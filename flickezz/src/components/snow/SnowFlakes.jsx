@@ -1,0 +1,142 @@
+import React from "react";
+import "./SnowFlakes.css";
+
+const SnowFlakes = () => {
+  return (
+    <>
+      <div className="snowflakes">
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        <i className="d-none d-md-none d-lg-inline-flex m-1"></i>
+        {/*  */}
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+        <i className="d-inline-flex m-1"></i>
+      </div>
+    </>
+  );
+};
+
+export default SnowFlakes;

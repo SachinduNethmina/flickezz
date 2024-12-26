@@ -5,6 +5,11 @@ import WebTorrent from "webtorrent";
 import fs from "fs";
 import path from "path";
 import logger from "../utils/Logger.js";
+import dotenv from "dotenv";
+import axios from "axios";
+dotenv.config();
+
+const SUBTITLES_API_KEY = process.env.SUBTITLES_API_KEY;
 
 export const getPopularMovies = async (req, res) => {
   try {
@@ -146,7 +151,7 @@ export const loadMovie = async (req, res) => {
   try {
     const { slug } = req.params;
 
-    const movie = await Movie.findOne({
+    let movie = await Movie.findOne({
       where: {
         slug,
       },
@@ -154,6 +159,19 @@ export const loadMovie = async (req, res) => {
         model: Torrent,
       },
     });
+
+    let subtitles = [];
+
+    const subUrl = `https://api.subdl.com/api/v1/subtitles?api_key=${SUBTITLES_API_KEY}&imdb_id=${movie?.imdbCode}`;
+
+    try {
+      const { data } = await axios.get(subUrl);
+      if (data && data.status) {
+        subtitles = data?.subtitles || [];
+      }
+    } catch (error) {}
+
+    movie = { ...movie.dataValues, subtitles };
 
     return res.json({ status: true, movie });
   } catch (error) {

@@ -94,7 +94,7 @@ const Home = () => {
       >
         <div className="bg-1-container d-flex flex-column justify-content-center align-items-center">
           <div className="bg-1-container-1">
-            <h1 className="title-1">Unlimited movies, Tv Series, and more</h1>
+            <h1 className="title-1">Watch unlimited movies...</h1>
             <h5 className="title-2 mt-4">
               Watch your favourite movie online or download
             </h5>

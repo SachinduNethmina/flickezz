@@ -105,30 +105,30 @@ export const publicRoutes = [
       </MainLayout>
     ),
   },
-  {
-    path: "/blog",
-    element: (
-      <MainLayout>
-        <Blog />
-      </MainLayout>
-    ),
-  },
-  {
-    path: "/blogs/search",
-    element: (
-      <MainLayout>
-        <BlogCategory />
-      </MainLayout>
-    ),
-  },
-  {
-    path: "/blog/:slug",
-    element: (
-      <MainLayout>
-        <ViewBlog />
-      </MainLayout>
-    ),
-  },
+  // {
+  //   path: "/blog",
+  //   element: (
+  //     <MainLayout>
+  //       <Blog />
+  //     </MainLayout>
+  //   ),
+  // },
+  // {
+  //   path: "/blogs/search",
+  //   element: (
+  //     <MainLayout>
+  //       <BlogCategory />
+  //     </MainLayout>
+  //   ),
+  // },
+  // {
+  //   path: "/blog/:slug",
+  //   element: (
+  //     <MainLayout>
+  //       <ViewBlog />
+  //     </MainLayout>
+  //   ),
+  // },
 ];
 
 export const adminRoutes = [

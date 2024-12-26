@@ -11,9 +11,9 @@ const App = () => {
           {publicRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
-          {adminRoutes.map((route, index) => (
+          {/* {adminRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
-          ))}
+          ))} */}
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>

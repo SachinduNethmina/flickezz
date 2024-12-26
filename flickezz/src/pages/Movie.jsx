@@ -17,6 +17,7 @@ import Banner1 from "../components/Ads/Banner1";
 import SocialBar from "../components/Ads/SocialBar";
 import Cookies from "js-cookie";
 import Banner2 from "../components/Ads/Banner2";
+import JSZip from "jszip";
 
 const Movie = () => {
   const params = useParams();
@@ -29,10 +30,13 @@ const Movie = () => {
 
   const [activeVideo, setActiveVideo] = useState(false);
 
+  const [subtitles, setSubtitles] = useState([]);
+
   useEffect(() => {
     const load = async () => {
       const movie = await loadMovieData(params.slug);
       setMovie(movie);
+      downloadAndExtractSubtitles(movie?.subtitles);
       const torr = [
         ...movie.Torrents.filter(
           (t) =>
@@ -118,6 +122,48 @@ const Movie = () => {
     // document.body.appendChild(a);
     // a.click();
     // document.body.removeChild(a);
+  };
+
+  //
+
+  const downloadAndExtractSubtitles = async (subs) => {
+    const subtitleFiles = [];
+    for (let k = 0; k < subs.length; k++) {
+      const sub = subs[k];
+      try {
+        const url = `https://dl.subdl.com${sub?.url}`; // Replace with your ZIP file URL
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to download file");
+        const blob = await response.blob();
+
+        const zip = await JSZip.loadAsync(blob);
+
+        for (const filename of Object.keys(zip.files)) {
+          if (filename.endsWith(".srt")) {
+            // Check for .srt files
+            const fileContent = await zip.files[filename].async("string");
+            const vttContent = convertSrtToVtt(fileContent); // Convert to WebVTT
+            subtitleFiles.push({
+              filename,
+              content: vttContent,
+              language: sub.lang,
+              languageCode: sub.language,
+            });
+            break;
+          }
+        }
+      } catch (error) {
+        console.error("Subtitles error", error);
+      }
+    }
+    setSubtitles(subtitleFiles);
+  };
+
+  // Converts .srt to .vtt (basic conversion)
+  const convertSrtToVtt = (srt) => {
+    const vtt =
+      "WEBVTT\n\n" + srt.replace(/(\d{2}:\d{2}:\d{2}),(\d{3})/g, "$1.$2"); // Replace ',' with '.'
+    return vtt;
   };
 
   return (
@@ -212,10 +258,23 @@ const Movie = () => {
                   height="auto"
                   controls
                   controlsList="nodownload"
-                  style={{ borderRadius: "14px" }}
+                  style={{ borderRadius: "14px", aspectRatio: 16 / 9 }}
                   onError={handleError} // Listening for errors
+                  id="video-player"
                 >
                   <source src={streamUrl} type="video/mp4" />
+                  {subtitles.map((subtitle, index) => (
+                    <track
+                      key={index}
+                      label={subtitle.language} // Subtitle language or description
+                      kind="subtitles"
+                      srcLang={subtitle.languageCode} // Language code (e.g., 'en', 'de')
+                      src={URL.createObjectURL(
+                        new Blob([subtitle.content], { type: "text/vtt" })
+                      )} // Create a Blob URL for each subtitle content
+                      default={index === 0} // Set the first subtitle as default
+                    />
+                  ))}
                   Your browser does not support the video tag.
                 </video>
               )}
