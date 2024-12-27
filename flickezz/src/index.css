@@ -498,13 +498,7 @@
 
 /* CAPTIONS */
 
-video::cue {
-  font-size: 19px; /* Reduce font size */
-  color: white; /* Subtitle color */
-  background: rgba(0, 0, 0, 0.5); /* Subtitle background */
-  /* padding: 5px; Add padding */
-  border-radius: 5px; /* Rounded corners */
-}
+
 
 /* CAPTIONS */
 
